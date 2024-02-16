@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Loan_Management_System.Repositories.Customer_Manager
+namespace Loan_Management_System.Helpers
 {
-    public class Customer : ICustomer 
+    public class SessionHelper
     {
 
     }
