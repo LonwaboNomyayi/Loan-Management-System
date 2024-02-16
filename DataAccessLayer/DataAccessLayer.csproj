@@ -49,7 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbContext.cs" />
+    <Compile Include="DTO\UserDetails.cs" />
+    <Compile Include="IAccounts.cs" />
+    <Compile Include="Models\SignInDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Accounts.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
