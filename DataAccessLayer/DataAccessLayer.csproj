@@ -48,12 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICustomer.cs" />
     <Compile Include="DbContext.cs" />
     <Compile Include="DTO\UserDetails.cs" />
-    <Compile Include="IAccounts.cs" />
+    <Compile Include="Contracts\IAccounts.cs" />
+    <Compile Include="Models\CustomerDetails.cs" />
     <Compile Include="Models\SignInDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Accounts.cs" />
+    <Compile Include="Repository\Customer.cs" />
+    <Compile Include="Wrapper\IWrapper.cs" />
+    <Compile Include="Wrapper\Wrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
