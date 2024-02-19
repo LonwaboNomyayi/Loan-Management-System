@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.DTO;
+﻿using DataAccessLayer.Contracts;
+using DataAccessLayer.DTO;
 using DataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,10 @@ namespace DataAccessLayer.Repository
         {
 			try
 			{
-				DataTable dt = await Task.Run(() => DbContext.GetSelectQuery("SP_GET_QuoteReasons"));
+				SqlParameter[] parameters = new SqlParameter[] { new SqlParameter("@Username", model.Username), new SqlParameter("@Password", model.Password) };
+				DataTable dt = await Task.Run(() => DbContext.GetParamatizedQuery("SP_GetUserDetails", parameters));
 
-                if (dt.HasErrors)
+                if (dt.Rows.Count > 0)
                 {
 					return new UserDetails
 					{
