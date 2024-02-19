@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataAccessLayer.DTO;
+using Loan_Management_System.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,7 +11,11 @@ namespace Loan_Management_System.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index()
-        {
+        {      
+            //lets get the username 
+            var userDetails = SessionHelper.Get<UserDetails>("UserDetail");
+            ViewBag.Username = userDetails.UserlogInName;
+
             return View();
         }
 
