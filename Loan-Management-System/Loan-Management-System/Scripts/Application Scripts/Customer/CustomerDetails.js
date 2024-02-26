@@ -27,3 +27,40 @@
     });
 
 });
+
+function AddOrUpdateCustomer() {
+    //validations
+    if ($('#txtName').val() == "") {
+        toastr.error("Pleasse provide customer name");
+    }
+    else if ($('#txtSurname').val() == "") {
+        toastr.error("Pleasse provide customer surname");
+    }
+    else if ($('#txtIDNumber').val() == "") {
+        toastr.error("Pleasse provide customer ID Number");
+    }
+    else if ($('#txtAddress1').val() == "") {
+        toastr.error("Pleasse provide customer Address1");
+    }
+    else if ($('#txtPayDay').val() == "") {
+        toastr.error("Pleasse provide customer pay day");
+    }
+    else if ($('#txtSalary').val() == "") {
+        toastr.error("Pleasse provide customer salary");
+    }
+    else {
+        //all necessary fields were provided
+        swal({
+            title: "Confirm",
+            text: "Are you sure you want to Save Customer Details ?",
+            icon: "warning",
+            buttons: true,
+            showCancelButton: true
+        }).then(function (isConfirm) {
+
+
+        });
+    }
+
+
+}
