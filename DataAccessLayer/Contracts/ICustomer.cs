@@ -10,5 +10,6 @@ namespace DataAccessLayer.Contracts
     public interface ICustomer
     {
         Task<List<CustomerDetails>> GetAllCustomerDetailsStoreKey(int StoreKey);
+        Task<CustomerDetails> GetCustomerDetailsByKey(int key);
     }
 }
