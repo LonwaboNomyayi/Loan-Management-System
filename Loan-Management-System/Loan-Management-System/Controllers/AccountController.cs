@@ -32,7 +32,7 @@ namespace Loan_Management_System.Controllers
                 if(userDetails != null)
                 {
                     //then call the SessionHelper to store the userdetails - as we may need this information in some parts of the system 
-                    SessionHelper.Set("UserDetail", userDetails);
+                    SessionHelper.SetUserDetails(userDetails);
 
                     Json(new { success = true });
                 }

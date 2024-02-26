@@ -51,10 +51,7 @@ namespace Loan_Management_System.Controllers
         [HttpGet]
         public async Task<JsonResult> GetCustomerDetailsByKey(int Id)
         {
-          
-            var customers = await GetAllCustomersInStore();
-            var thisCustomer = customers.FirstOrDefault(c => c.CustomerId == Id);
-
+            var thisCustomer = await customer.GetCustomerDetailsByKey(Id);
             return Json(new { data = thisCustomer }, JsonRequestBehavior.AllowGet);
         }
 
@@ -64,8 +61,7 @@ namespace Loan_Management_System.Controllers
 
         private async Task<List<CustomerDetails>> GetAllCustomersInStore()
         {
-            var userDetails = SessionHelper.Get<UserDetails>("UserDetail");
-
+            var userDetails = SessionHelper.GetUserInfo;
             var customers = await customer.GetAllCustomerDetailsStoreKey(userDetails.UserStoreId);
             return customers;
         }
