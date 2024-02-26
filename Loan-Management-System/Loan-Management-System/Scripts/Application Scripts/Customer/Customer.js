@@ -23,10 +23,10 @@ function loadDataTable() {
         },
         "columns": [
             { "data": "CustomerId", "visible": false, "searchable": false },
-            { "data": "Name" },
+            { "data": "Name" }, 
             { "data": "Surname" },
             { "data": "IDNumber" },
-            { "data": "StreetAddressLine1", "visible": false, "searchable": false  },
+            { "data": "AddressLine1", "visible": true, "searchable": false  },
             {
                 "data": "CustomerId",
                 "render": function (data, type, full) {

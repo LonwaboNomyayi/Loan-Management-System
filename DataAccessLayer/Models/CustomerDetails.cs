@@ -12,6 +12,13 @@ namespace DataAccessLayer.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string IDNumber { get; set; }
-        public string StreetAddressLine1 { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
+        public string AddressLine3 { get; set; }
+        public string AddressLine4 { get; set; }
+        public string PostalCode { get; set; }
+        public int PayDay { get; set; }
+        public double Salary { get; set; }
+
     }
 }

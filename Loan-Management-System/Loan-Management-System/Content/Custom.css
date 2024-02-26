@@ -341,6 +341,10 @@ tbody tr:nth-child(even) {
     padding: 1rem;
 }
 
+.form-fields {
+    margin-bottom: 10px;
+}
+
 .bday-img {
     height: 60px;
     width: 60px;
