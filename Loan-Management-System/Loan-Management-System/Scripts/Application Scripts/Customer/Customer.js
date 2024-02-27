@@ -32,7 +32,7 @@ function loadDataTable() {
                 "render": function (data, type, full) {
                     if (data != "") {
                         var customerId = data;
-                        return "<a class='btn btn-warning btn-sm' onclick=navigateToCustomerDetails('" + customerId+"')> Edit</a>";
+                        return "<a class='btn btn-warning btn-sm' onclick=navigateToCustomerDetails('" + customerId+"')><span class ='ti-pencil-alt'></span> Edit</a>";
                     }
                 }
             }

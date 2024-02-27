@@ -12,6 +12,6 @@ namespace DataAccessLayer.Wrapper
     {
         private readonly ICustomer customer = new Customer();
 
-        public ICustomer customers { get => customer; set => _ = customer; }
+        public ICustomer Customer { get => customer; set => _ = customer; }
     }
 }

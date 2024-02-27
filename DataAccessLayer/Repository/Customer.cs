@@ -80,5 +80,53 @@ namespace DataAccessLayer.Repository
 				return null;
 			}
 		}
-    }
+
+		public async Task<bool> AddOrUpdateCustomerDetails(CustomerDetails customer)
+        {
+            try
+            {
+                if (customer.AddressLine2 == null)
+                {
+                    customer.AddressLine2 = "";
+                }
+
+                if (customer.AddressLine3 == null)
+                {
+                    customer.AddressLine3 = "";
+                }
+
+                if (customer.AddressLine4 == null)
+                {
+                    customer.AddressLine4 = "";
+                }
+
+                if (customer.PostalCode == null)
+                {
+                    customer.PostalCode = "";
+                }
+
+                SqlParameter[] parameters = new SqlParameter[] { 
+					new SqlParameter("@CustomerKey", customer.CustomerId), 
+					new SqlParameter("@Name", customer.Name),
+					new SqlParameter("@Surname", customer.Surname),
+					new SqlParameter("@IDNumber", customer.IDNumber),
+					new SqlParameter("@AddressLine1", customer.AddressLine1),
+					new SqlParameter("@AddressLine2", customer.AddressLine2),
+					new SqlParameter("@AddressLine3", customer.AddressLine3),
+					new SqlParameter("@AddressLine4", customer.AddressLine4),
+					new SqlParameter("@PostalCode", customer.PostalCode),
+					new SqlParameter("@PayDay", customer.PayDay),
+					new SqlParameter("@Salary", customer.Salary),
+					new SqlParameter("@Store_Key", customer.StoreId),
+				};
+				return await Task.Run(() => DbContext.ExecuteNonQuery("SP_AddOrUpdateCustomerDetailsByKey", parameters));
+			}
+			catch(Exception ex)
+            {
+
+            }
+			return false;
+        }
+
+	}
 }

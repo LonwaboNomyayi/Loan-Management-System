@@ -11,5 +11,6 @@ namespace DataAccessLayer.Contracts
     {
         Task<List<CustomerDetails>> GetAllCustomerDetailsStoreKey(int StoreKey);
         Task<CustomerDetails> GetCustomerDetailsByKey(int key);
+        Task<bool> AddOrUpdateCustomerDetails(CustomerDetails customer);
     }
 }

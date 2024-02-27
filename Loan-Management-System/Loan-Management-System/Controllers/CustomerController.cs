@@ -14,7 +14,7 @@ namespace Loan_Management_System.Controllers
 {
     public class CustomerController : Controller
     {
-        private readonly ICustomer customer = new Wrapper().customers;
+        private readonly ICustomer _customer = new Wrapper().Customer;
         // GET: Customer
 
 
@@ -51,8 +51,25 @@ namespace Loan_Management_System.Controllers
         [HttpGet]
         public async Task<JsonResult> GetCustomerDetailsByKey(int Id)
         {
-            var thisCustomer = await customer.GetCustomerDetailsByKey(Id);
+            var thisCustomer = await _customer.GetCustomerDetailsByKey(Id);
             return Json(new { data = thisCustomer }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> AddOrUpdateCustomer(CustomerDetails customer)
+        {
+
+            //lets the branch that we need to link this customer to 
+
+            customer.StoreId = SessionHelper.GetUserInfo.UserStoreId;
+            var result = await _customer.AddOrUpdateCustomerDetails(customer);
+
+            if (result)
+            {
+                return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = result, message = "Could not save customer details - Please contact support team." }, JsonRequestBehavior.AllowGet);
+
         }
 
 
@@ -62,7 +79,7 @@ namespace Loan_Management_System.Controllers
         private async Task<List<CustomerDetails>> GetAllCustomersInStore()
         {
             var userDetails = SessionHelper.GetUserInfo;
-            var customers = await customer.GetAllCustomerDetailsStoreKey(userDetails.UserStoreId);
+            var customers = await _customer.GetAllCustomerDetailsStoreKey(userDetails.UserStoreId);
             return customers;
         }
         #endregion
