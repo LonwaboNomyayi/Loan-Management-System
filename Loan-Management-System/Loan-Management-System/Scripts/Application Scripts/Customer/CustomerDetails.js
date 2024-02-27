@@ -57,8 +57,39 @@ function AddOrUpdateCustomer() {
             buttons: true,
             showCancelButton: true
         }).then(function (isConfirm) {
+            if (isConfirm) {
+
+                var customer = {
+                    "CustomerId": $('#customerId').val(),
+                    "Name": $('#txtName').val(),
+                    "Surname": $('#txtSurname').val(),
+                    "IDNumber": $('#txtIDNumber').val(),
+                    "AddressLine1": $('#txtAddress1').val(),
+                    "AddressLine2": $('#txtAddress2').val(),
+                    "AddressLine3": $('#txtAddress3').val(),
+                    "AddressLine4": $('#txtAddress4').val(),
+                    "PostalCode": $('#txtPostalCde').val(),
+                    "PayDay": $('#txtPayDay').val(),
+                    "Salary": $('#txtSalary').val()
+                };
+
+                
 
 
+                $.ajax({
+                    type: "POST",
+                    url: '/Customer/AddOrUpdateCustomer',
+                    data: { customer: customer },
+                    success: function (data) {
+                        if (data.data) {
+                            window.location.href = '/Customer/Index';
+                        }
+                        else {
+                            toastr.error(data.Message);
+                        }
+                    }
+                });
+            }
         });
     }
 
