@@ -4,7 +4,7 @@
 });
 
 function LoadLoans() {
-    $('#tblCustomers').DataTable({
+    $('#tblLoans').DataTable({
         "ajax": {
             "type": 'GET',
             "url": '/Loan/GetAllLoansForStore',
