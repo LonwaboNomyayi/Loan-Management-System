@@ -145,6 +145,7 @@
     <Content Include="Scripts\Application Scripts\Account\Signin.js" />
     <Content Include="Scripts\Application Scripts\Customer\Customer.js" />
     <Content Include="Scripts\Application Scripts\Customer\CustomerDetails.js" />
+    <Content Include="Scripts\Application Scripts\Loan\Loans.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
