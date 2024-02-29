@@ -1,28 +1,27 @@
 ﻿@{
-    ViewBag.Title = "CustomerDetails";
+    ViewBag.Title = "Loan Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<input id="customerId" type="hidden" value="@ViewBag.CustomerId" />
 
-
-
+<input id="LoanId" type="hidden" value="@ViewBag.LoanId" />
 
 <div class="main-content">
     <main>
         <div>
             <div class="col-lg-12 form-fields">
-                    <div class="col-lg-4">
-                        <label>Name</label>
-                    </div>
-                    <div class="col-lg-4">
-                        <input id="txtName" class="form-control" />
-                    </div>
+                <div class="col-lg-4">
+                    <label>Loan Date</label>
+                </div>
+                <div class="col-lg-4">
+                    <input id="txtLoanDate" class="form-control" type="date"/>
+                </div>
             </div>
             <div class="col-lg-12 form-fields ">
                 <div class="col-lg-4">
-                    <label>Surname</label>
+                    <label>Loan Holder</label>
                 </div>
                 <div class="col-lg-4">
-                    <input id="txtSurname" class="form-control" />
+                    <select id="ddlCustomers" name="ddlCustomers" class="form-control"></select>
                 </div>
             </div>
             <div class="col-lg-12 form-fields ">
@@ -73,7 +72,7 @@
                     <input id="txtAddress3" class="form-control" />
                 </div>
             </div>
-            <div class="col-lg-12 form-fields" >
+            <div class="col-lg-12 form-fields">
                 <div class="col-lg-4">
                     <label>Address Line 4</label>
                 </div>
@@ -100,7 +99,7 @@
     </main>
 </div>
 
-
 @section scripts {
-   <script src="~/Scripts/Application Scripts/Customer/CustomerDetails.js"></script>
-}
+    <script src="~/Scripts/Application Scripts/Loan/LoanDetails.js"></script>
+    } 
+

@@ -34,3 +34,7 @@ function LoadLoans() {
         "scrollCollapse": true
     });
 }
+
+function navigateToLoanDetails(Id) {
+    window.location.href = "/Loan/LoanDetails/" + Id;
+}

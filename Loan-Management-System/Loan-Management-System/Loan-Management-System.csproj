@@ -145,6 +145,7 @@
     <Content Include="Scripts\Application Scripts\Account\Signin.js" />
     <Content Include="Scripts\Application Scripts\Customer\Customer.js" />
     <Content Include="Scripts\Application Scripts\Customer\CustomerDetails.js" />
+    <Content Include="Scripts\Application Scripts\Loan\LoanDetails.js" />
     <Content Include="Scripts\Application Scripts\Loan\Loans.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -177,6 +178,7 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\CustomerDetails.cshtml" />
     <Content Include="Views\Loan\Index.cshtml" />
+    <Content Include="Views\Loan\LoanDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -29,10 +29,10 @@ namespace DataAccessLayer.Repository
 						new LoanDTO
 						{
 							LoanID = (int)row["Loan_Key"],
-							LoanDate = DateTime.Parse(row["Loan_Date"].ToString().Trim()),
+							LoanDate = DateTime.Parse(row["Loan_Date"].ToString().Trim()).ToShortDateString(),
 							LoanHolder = row["Loan_Customer_Name"].ToString().Trim(),
 							LoanAmount = double.Parse(row["Loan_Amount"].ToString().Trim()),
-							ReturnDate = DateTime.Parse(row["Loan_Return_Date"].ToString().Trim()),
+							ReturnDate = DateTime.Parse(row["Loan_Return_Date"].ToString().Trim()).ToShortDateString(),
 							ReturnAmount = double.Parse(row["Loan_Return_Amount"].ToString().Trim()),
 							InterestCharged = double.Parse(row["Loan_Interest"].ToString().Trim())
 						});
