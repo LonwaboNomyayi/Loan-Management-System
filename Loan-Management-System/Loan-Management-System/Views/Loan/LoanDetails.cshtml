@@ -13,7 +13,15 @@
                     <label>Loan Date</label>
                 </div>
                 <div class="col-lg-4">
-                    <input id="txtLoanDate" class="form-control" type="date"/>
+                    <input id="txtLoanDate" class="form-control" type="date"  />
+                </div>
+            </div>
+            <div class="col-lg-12 form-fields ">
+                <div class="col-lg-4">
+                    <label>Loan Status</label>
+                </div>
+                <div class="col-lg-4">
+                    <select id="ddlLoanStatus" name="ddlLoanStatuses" class="form-control"></select>
                 </div>
             </div>
             <div class="col-lg-12 form-fields ">
@@ -26,73 +34,41 @@
             </div>
             <div class="col-lg-12 form-fields ">
                 <div class="col-lg-4">
-                    <label>ID NUmber</label>
+                    <label>Loan Amount</label>
                 </div>
                 <div class="col-lg-4">
-                    <input id="txtIDNumber" class="form-control" />
-                </div>
-            </div>
-            <div class="col-lg-12 form-fields ">
-                <div class="col-lg-4">
-                    <label>Salary</label>
-                </div>
-                <div class="col-lg-4">
-                    <input id="txtSalary" class="form-control" />
+                    <input id="txtLoanAmount" class="form-control" />
                 </div>
             </div>
             <div class="col-lg-12 form-fields ">
                 <div class="col-lg-4">
-                    <label>Pay Day</label>
+                    <label>Return Date</label>
                 </div>
                 <div class="col-lg-4">
-                    <input id="txtPayDay" class="form-control" />
-                </div>
-            </div>
-            <div class="col-lg-12 form-fields ">
-                <div class="col-lg-4">
-                    <label>Address Line 1</label>
-                </div>
-                <div class="col-lg-4">
-                    <input id="txtAddress1" class="form-control" />
+                    <input id="txtLoanReturnDate" class="form-control" type="date" />
                 </div>
             </div>
             <div class="col-lg-12 form-fields ">
                 <div class="col-lg-4">
-                    <label>Address Line 2</label>
+                    <label>Return Amount</label>
                 </div>
                 <div class="col-lg-4">
-                    <input id="txtAddress2" class="form-control" />
-                </div>
-            </div>
-            <div class="col-lg-12 form-fields ">
-                <div class="col-lg-4">
-                    <label>Address Line 3</label>
-                </div>
-                <div class="col-lg-4">
-                    <input id="txtAddress3" class="form-control" />
-                </div>
-            </div>
-            <div class="col-lg-12 form-fields">
-                <div class="col-lg-4">
-                    <label>Address Line 4</label>
-                </div>
-                <div class="col-lg-4">
-                    <input id="txtAddress4" class="form-control" />
+                    <input id="txtReturnAmount" class="form-control" />
                 </div>
             </div>
             <div class="col-lg-12 form-fields ">
                 <div class="col-lg-4">
-                    <label>Postal code</label>
+                    <label>Interest Charged</label>
                 </div>
                 <div class="col-lg-4">
-                    <input id="txtPostalCde" class="form-control" />
+                    <input id="txtLoanInterest" class="form-control" />
                 </div>
             </div>
             <div class="col-lg-12 form-fields ">
                 <div class="col-lg-4">
                 </div>
                 <div class="col-lg-4">
-                    <button class="btn btn-primary" onclick="AddOrUpdateCustomer()">Submit</button>
+                    <button class="btn btn-primary" onclick="AddOrUpdateLoan()">Submit</button>
                 </div>
             </div>
         </div>

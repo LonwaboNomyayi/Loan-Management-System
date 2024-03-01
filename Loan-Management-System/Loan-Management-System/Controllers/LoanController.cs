@@ -33,7 +33,7 @@ namespace Loan_Management_System.Controllers
 
 
         #region Data Requests
-
+        [HttpGet]
         public async Task<JsonResult> GetAllLoansForStore()
         {
             var branchId = SessionHelper.GetUserInfo.UserStoreId;
@@ -42,6 +42,21 @@ namespace Loan_Management_System.Controllers
             return Json(new { data = serverResults }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public async Task<JsonResult> GetLoanDetails(int id)
+        {
+            var serverResults = await _loans.GetLoanByKey(id);
+
+            return Json(new { data = serverResults }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetLoanStatuses()
+        {
+            var serverResults = await _loans.GetLoanStatuses();
+
+            return Json(new { data = serverResults }, JsonRequestBehavior.AllowGet);
+        }
 
         #endregion
 
