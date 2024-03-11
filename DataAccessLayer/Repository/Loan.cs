@@ -105,5 +105,77 @@ namespace DataAccessLayer.Repository
             }
 			return null;
         }
-    }
+
+
+		public async Task<bool> RegisterLoan(LoanDetails loanDetais)
+        {
+            try
+            {
+				SqlParameter[] parameters = new SqlParameter[] {
+					new SqlParameter("@LoanDate", loanDetais.LoanDate), 
+					new SqlParameter("@LoanStatus", loanDetais.LoanStatus),
+					new SqlParameter("@LoanCustomerKey", loanDetais.LoanCustomerKey),
+					new SqlParameter("@LoanAmount", loanDetais.LoanAmount),
+					new SqlParameter("@LoanReturnDate", loanDetais.LoanReturnDate),
+					new SqlParameter("@ReturnAmount", loanDetais.ReturnAmount),
+					new SqlParameter("@LoanInterest", loanDetais.LoanInterest),
+					new SqlParameter("@LoanStore", loanDetais.LoanStore)
+				};
+				return await Task.Run(() => DbContext.ExecuteNonQuery("SP_AddLoan", parameters));
+			}
+			catch(Exception ex)
+            {
+
+            }
+			return false;
+        }
+
+		public async Task<bool> UpdateLoanPayment(LoanDetailsDTO loanDetails)
+        {
+            try
+            {
+				SqlParameter[] parameters = new SqlParameter[] {
+					new SqlParameter("@LoanId", loanDetails.LoanId),
+					new SqlParameter("@FullPayment", loanDetails.FullPayment),
+					new SqlParameter("@PaidAmount", loanDetails.PaidAmount),
+					new SqlParameter("@LoanReturnDate", loanDetails.ReturnDate),
+					new SqlParameter("@RemainingAmount", loanDetails.RemainingPayment),
+					new SqlParameter("@LoanStatus", loanDetails.LoanStatus)
+				};
+				return await Task.Run(() => DbContext.ExecuteNonQuery("SP_UpdateLoanPayment", parameters));
+			}
+			catch(Exception ex)
+            {
+				
+            }
+			return false;
+        }
+
+
+
+		//public async Task<bool> MarkLoanAsPaidUp(int LoanId)
+		//      {
+		//          try
+		//          {
+
+
+
+
+		//          }
+		//	catch(Exception ex)
+		//          {
+
+		//          }
+		//      }
+
+		#region Private Routines 
+		//public async Task<bool> MarkLoanAsPaidUpInternal(int LoanId)
+		//{
+
+		//}
+		#endregion
+
+
+
+	}
 }

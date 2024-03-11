@@ -17,9 +17,27 @@ function LoadLoans() {
             { "data": "LoanID", "visible": false, "searchable": false },
             { "data": "LoanDate" },
             { "data": "LoanHolder" },
-            { "data": "LoanAmount" },
+            {
+                "data": "LoanAmount",
+                "render": function (data) {
+                    return "R " + data;
+                }
+
+            },
+            {
+                "data": "InterestCharged",
+                "render": function (data) {
+                    return "R " + data;
+                }
+            },
+            {
+                "data": "ReturnAmount",
+                "render": function (data) {
+                    return "R " + data;
+                }
+            },
+
             { "data": "ReturnDate" },
-            { "data": "InterestCharged" },
             {
                 "data": "LoanID",
                 "render": function (data, type, full) {

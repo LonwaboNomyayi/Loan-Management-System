@@ -1,4 +1,6 @@
 ﻿using DataAccessLayer.Contracts;
+using DataAccessLayer.DTO;
+using DataAccessLayer.Models;
 using DataAccessLayer.Wrapper;
 using Loan_Management_System.Helpers;
 using System;
@@ -58,7 +60,31 @@ namespace Loan_Management_System.Controllers
             return Json(new { data = serverResults }, JsonRequestBehavior.AllowGet);
         }
 
+
+        public async Task<JsonResult> RegisterLoan(LoanDetails loanDetais)
+        {
+            loanDetais.LoanStore = SessionHelper.GetUserInfo.UserStoreId;
+            var serverResults = await _loans.RegisterLoan(loanDetais);
+
+            return Json(new { data = serverResults }, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<JsonResult> UpdateLoanPayment(LoanDetailsDTO loanDetails)
+        {
+            var serviceResult = await _loans.UpdateLoanPayment(loanDetails);
+            return Json(new { data = serviceResult }, JsonRequestBehavior.AllowGet);
+        }
+
+        //[HttpPost]
+        //public async Task<JsonResult> MarkLoanAsPaidUp(int id)
+        //{
+
+        //}
+
         #endregion
 
+        #region Private Routines 
+       
+        #endregion
     }
 }

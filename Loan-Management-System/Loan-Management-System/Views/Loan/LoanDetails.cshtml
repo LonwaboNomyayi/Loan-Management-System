@@ -4,6 +4,10 @@
 }
 
 <input id="LoanId" type="hidden" value="@ViewBag.LoanId" />
+<input id="txtNonFormatedLoanAmount" type="hidden"/>
+<input id="txtNonFormatedLoanReturnAmount" type="hidden" />
+<input id="txtCurrentLoanStatus" type="hidden" />
+<input id="txtOldReturnDate" type="hidden" />
 
 <div class="main-content">
     <main>
@@ -13,7 +17,7 @@
                     <label>Loan Date</label>
                 </div>
                 <div class="col-lg-4">
-                    <input id="txtLoanDate" class="form-control" type="date"  />
+                    <input id="txtLoanDate" class="form-control" type="date" />
                 </div>
             </div>
             <div class="col-lg-12 form-fields ">
@@ -37,7 +41,7 @@
                     <label>Loan Amount</label>
                 </div>
                 <div class="col-lg-4">
-                    <input id="txtLoanAmount" class="form-control" />
+                    <input id="txtLoanAmount" class="form-control"/>
                 </div>
             </div>
             <div class="col-lg-12 form-fields ">
@@ -56,12 +60,20 @@
                     <input id="txtReturnAmount" class="form-control" />
                 </div>
             </div>
-            <div class="col-lg-12 form-fields ">
+            <div class="col-lg-12 form-fields " id="InterestContainer">
                 <div class="col-lg-4">
                     <label>Interest Charged</label>
                 </div>
                 <div class="col-lg-4">
                     <input id="txtLoanInterest" class="form-control" />
+                </div>
+            </div>
+            <div id="PaidContainer" class="col-lg-12 form-fields" hidden>
+                <div class="col-lg-4">
+                    <label>Paid Amount</label>
+                </div>
+                <div class="col-lg-4">
+                    <input id="txtPaidAmount" class="form-control" />
                 </div>
             </div>
             <div class="col-lg-12 form-fields ">

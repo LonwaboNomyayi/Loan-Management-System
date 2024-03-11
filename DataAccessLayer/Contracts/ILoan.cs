@@ -13,5 +13,7 @@ namespace DataAccessLayer.Contracts
         Task<List<LoanDTO>> GetAllLoansForStore(int StoreKey);
         Task<LoanDetails> GetLoanByKey(int Id);
         Task<List<LoanStatus>> GetLoanStatuses();
+        Task<bool> RegisterLoan(LoanDetails loanDetais);
+        Task<bool> UpdateLoanPayment(LoanDetailsDTO loanDetails);
     }
 }
