@@ -37,7 +37,9 @@ function LoadLoans() {
                 }
             },
 
-            { "data": "ReturnDate" },
+            {
+                "data": "ReturnDate"
+            },
             {
                 "data": "LoanID",
                 "render": function (data, type, full) {
@@ -48,8 +50,26 @@ function LoadLoans() {
                 }
             }
         ],
-        "scrollY": "520px",
-        "scrollCollapse": true
+        "scrollY": "2000px",
+        "scrollCollapse": true,
+        "pageLength": 100,
+        "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+            let today = new Date();
+            let todayMonth = today.getMonth() + 1;
+            let strDate = today.getFullYear() + '/' + todayMonth + '/' + today.getDate();
+            today = new Date(strDate).toLocaleDateString();
+            let returnDate = new Date(aData['ReturnDate']).toLocaleDateString();
+            //Clients that need to be collected today 
+            if (returnDate === today) {
+                $('td', nRow).css('background-color', 'Green');
+                $('td', nRow).css('color', 'White');
+            }
+
+            if (returnDate < today) {
+                $('td', nRow).eq(5).css('background-color', 'Red');
+                $('td', nRow).eq(5).css('color', 'White');
+            }
+        },
     });
 }
 

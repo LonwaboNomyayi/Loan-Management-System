@@ -12,6 +12,7 @@ namespace DataAccessLayer.DTO
         public string PaidAmount { get; set; }
         public DateTime ReturnDate { get; set; }
         public bool FullPayment { get; set; }
+        public bool PaymentBeforeSetReturnDate { get; set; }
         public double RemainingPayment { get; set; }
         public int LoanStatus { get; set; }
     }

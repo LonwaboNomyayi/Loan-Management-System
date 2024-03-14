@@ -154,23 +154,11 @@ function AddOrUpdateLoan() {
             showCancelButton: true
         }).then(function (isConfirm) {
             if (isConfirm) {
-                //we can go ahead and post the request
-               
-
-                //check if the This is a part payment or a full payment 
-
-
-                //For Principal status - we require the client to pay atlease the principal
-                if (parseFloat($('#txtNonFormatedLoanAmount').val()) <= parseFloat($('#txtPaidAmount').val()) && parseFloat($('#txtPaidAmount').val()) != parseFloat($('#txtNonFormatedLoanReturnAmount').val())) {
-                    //allowed Principal Payment
-                    let oldDate = new Date($('#txtOldReturnDate').val());
-                    let newDate = new Date($('#txtLoanReturnDate').val());
-                    let amountDue = parseFloat($('#txtNonFormatedLoanReturnAmount').val()) - parseFloat($('#txtPaidAmount').val());
-                    if (oldDate < newDate && $('#ddlLoanStatus').val() === "3") {
-
+                if ($('#ddlLoanStatus').val() === "5") {
+                    if (new Date($('#txtLoanReturnDate').val()) < new Date()) {
                         swal({
                             title: "Confirm",
-                            text: "You are making a Principal Payment, and still need to pay interest \nPrincipal Payment: R " + $('#txtPaidAmount').val() + "\nOutstanding Amount: R " + amountDue,
+                            text: "You are about to mark this loan as default, Do you connfirm this ?",
                             icon: "warning",
                             buttons: true,
                             showCancelButton: true
@@ -178,16 +166,12 @@ function AddOrUpdateLoan() {
                             if (isConfirm) {
                                 var loanDetails = {
                                     "LoanId": $('#LoanId').val(),
-                                    "PaidAmount": $('#txtPaidAmount').val(),
-                                    "ReturnDate": $('#txtLoanReturnDate').val(),
-                                    "FullPayment": false,
-                                    "RemainingPayment": amountDue,
                                     "LoanStatus": $('#ddlLoanStatus').val()
-                                }
+                                };
 
                                 $.ajax({
                                     type: "POST",
-                                    url: '/Loan/UpdateLoanPayment',
+                                    url: '/Loan/DefaultLoan/',
                                     data: { loanDetails: loanDetails },
                                     success: function (data) {
                                         if (data.data) {
@@ -201,33 +185,125 @@ function AddOrUpdateLoan() {
 
                             }
                         });
-
-
-                    }
-                    else if ($('#ddlLoanStatus').val() != "3") {
-                        toastr.error("Please update the status to Principal Paid");
                     }
                     else {
-                        toastr.error("Please update the return payment date since you are making Principal Payment");
+                        toastr.error("Cannot mark this load as default before the return date is passed.");
                     }
-
                 }
-                else if ($('#txtCurrentLoanStatus').val() === "3") {
-                    //The customer did make the principal amount now lets see if they are paying of the balance or making part of the remaining payment
-                    var loanDetails = {
-                        "LoanId": $('#LoanId').val(),
-                        "PaidAmount": $('#txtPaidAmount').val(),
-                        "ReturnDate": $('#txtLoanReturnDate').val(),
-                        "LoanStatus": $('#ddlLoanStatus').val(),
-                        "FullPayment": false
+                else {
+                    //For Principal status - we require the client to pay atlease the principal
+                    if (parseFloat($('#txtNonFormatedLoanAmount').val()) <= parseFloat($('#txtPaidAmount').val()) && parseFloat($('#txtPaidAmount').val()) < parseFloat($('#txtNonFormatedLoanReturnAmount').val())) {
+                        //allowed Principal Payment
+                        let oldDate = new Date($('#txtOldReturnDate').val());
+                        let newDate = new Date($('#txtLoanReturnDate').val());
+                        let amountDue = parseFloat($('#txtNonFormatedLoanReturnAmount').val()) - parseFloat($('#txtPaidAmount').val());
+                        if (oldDate < newDate && $('#ddlLoanStatus').val() === "3") {
+
+                            swal({
+                                title: "Confirm",
+                                text: "You are making a Principal Payment, and still need to pay interest \nPrincipal Payment: R " + $('#txtPaidAmount').val() + "\nOutstanding Amount: R " + amountDue,
+                                icon: "warning",
+                                buttons: true,
+                                showCancelButton: true
+                            }).then(function (isConfirm) {
+                                if (isConfirm) {
+                                    var loanDetails = {
+                                        "LoanId": $('#LoanId').val(),
+                                        "PaidAmount": $('#txtPaidAmount').val(),
+                                        "ReturnDate": $('#txtLoanReturnDate').val(),
+                                        "FullPayment": false,
+                                        "RemainingPayment": amountDue,
+                                        "LoanStatus": $('#ddlLoanStatus').val()
+                                    }
+
+                                    $.ajax({
+                                        type: "POST",
+                                        url: '/Loan/UpdateLoanPayment',
+                                        data: { loanDetails: loanDetails },
+                                        success: function (data) {
+                                            if (data.data) {
+                                                window.location.href = '/Loan/Index';
+                                            }
+                                            else {
+                                                toastr.error(data.Message);
+                                            }
+                                        }
+                                    });
+
+                                }
+                            });
+
+
+                        }
+                        else if ($('#ddlLoanStatus').val() != "3") {
+                            toastr.error("Please update the status to Principal Paid");
+                        }
+                        else {
+                            toastr.error("Please update the return payment date since you are making Principal Payment");
+                        }
+
                     }
+                    else if ($('#txtCurrentLoanStatus').val() === "3") {
+                        //The customer did make the principal amount now lets see if they are paying of the balance or making part of the remaining payment
+                        var loanDetails = {
+                            "LoanId": $('#LoanId').val(),
+                            "PaidAmount": $('#txtPaidAmount').val(),
+                            "ReturnDate": $('#txtLoanReturnDate').val(),
+                            "LoanStatus": $('#ddlLoanStatus').val(),
+                            "FullPayment": false
+                        }
 
+                        if (parseFloat($('#txtPaidAmount').val()) === parseFloat($('#txtNonFormatedLoanReturnAmount').val())) {
+                            //this is a full last payment 
+                            loanDetails.FullPayment = true;
 
+                            $.ajax({
+                                type: "POST",
+                                url: '/Loan/UpdateLoanPayment',
+                                data: { loanDetails: loanDetails },
+                                success: function (data) {
+                                    if (data.data) {
+                                        window.location.href = '/Loan/Index';
+                                    }
+                                    else {
+                                        toastr.error(data.Message);
+                                    }
+                                }
+                            });
+                        }
+                        else {
+                            loanDetails.FullPayment = false;
 
+                            //do we have a a different return date ?
+                            if (new Date($('#txtLoanReturnDate').val()) >= new Date($('#txtOldReturnDate').val())) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: '/Loan/UpdateLoanPayment',
+                                    data: { loanDetails: loanDetails },
+                                    success: function (data) {
+                                        if (data.data) {
+                                            window.location.href = '/Loan/Index';
+                                        }
+                                        else {
+                                            toastr.error(data.Message);
+                                        }
+                                    }
+                                });
+                            }
+                            else {
+                                toastr.error("Please provide a new return date for the remaining balanace");
+                            }
+                        }
 
-                    if (parseFloat($('#txtPaidAmount').val()) === parseFloat($('#txtNonFormatedLoanReturnAmount').val())) {
-                        //this is a full last payment 
-                        loanDetails.FullPayment = true;
+                    }
+                    else if (parseFloat($('#txtPaidAmount').val()) === parseFloat($('#txtNonFormatedLoanReturnAmount').val())) {
+                        //this is a good customer - repaying all that that they owe 
+                        var loanDetails = {
+                            "LoanId": $('#LoanId').val(),
+                            "PaidAmount": $('#txtPaidAmount').val(),
+                            "ReturnDate": $('#txtLoanReturnDate').val(),
+                            "FullPayment": true
+                        };
 
                         $.ajax({
                             type: "POST",
@@ -244,100 +320,87 @@ function AddOrUpdateLoan() {
                         });
                     }
                     else {
-                        loanDetails.FullPayment = false;
-
-                        //do we have a a different return date ?
-                        if (new Date($('#txtLoanReturnDate').val()) >= new Date($('#txtOldReturnDate').val())) {
-                            $.ajax({
-                                type: "POST",
-                                url: '/Loan/UpdateLoanPayment',
-                                data: { loanDetails: loanDetails },
-                                success: function (data) {
-                                    if (data.data) {
-                                        window.location.href = '/Loan/Index';
-                                    }
-                                    else {
-                                        toastr.error(data.Message);
-                                    }
-                                }
-                            });
+                        if (parseFloat($('#txtPaidAmount').val()) > parseFloat($('#txtNonFormatedLoanReturnAmount').val())){
+                            toastr.error("Attempting to pay more than the return amount is not permitted");
                         }
                         else {
-                            toastr.error("Please provide a new return date for the remaining balanace");
-                        }
-                    }
 
-                }
-                else if (parseFloat($('#txtPaidAmount').val()) === parseFloat($('#txtNonFormatedLoanReturnAmount').val())) {
-                    //this is a good customer - repaying all that that they owe 
-                    var loanDetails = {
-                        "LoanId": $('#LoanId').val(),
-                        "PaidAmount": $('#txtPaidAmount').val(),
-                        "ReturnDate": $('#txtLoanReturnDate').val(),
-                        "FullPayment": true
-                    };
+                            //not necessarly a bad client it could be that this customer is making payment before the return date 
 
-                    $.ajax({
-                        type: "POST",
-                        url: '/Loan/UpdateLoanPayment',
-                        data: { loanDetails: loanDetails },
-                        success: function (data) {
-                            if (data.data) {
-                                window.location.href = '/Loan/Index';
+                            var loanDetails = {
+                                "LoanId": $('#LoanId').val(),
+                                "PaidAmount": $('#txtPaidAmount').val(),
+                                "ReturnDate": $('#txtLoanReturnDate').val(),
+                                "FullPayment": false,
+                                "PaymentBeforeSetReturnDate": false,
+                                "LoanStatus": $('#ddlLoanStatus').val()
+                            };
+
+
+                            if (new Date($('#txtOldReturnDate').val()) > new Date()) {
+                                loanDetails.PaymentBeforeSetReturnDate = true;
+                            }
+
+                            //this customer is paying before the actual return date 
+                            //if not : bad customer fails to pay atleast what they borrowed
+
+                            //do we have a a different return date ? : NB: This is only for clients that are on their return period and and beyond 
+                            if (new Date($('#txtLoanReturnDate').val()) >= new Date($('#txtOldReturnDate').val()) && loanDetails.PaymentBeforeSetReturnDate == false) {
+                                if ($('#ddlLoanStatus').val() === "4") {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: '/Loan/UpdateLoanPayment',
+                                        data: { loanDetails: loanDetails },
+                                        success: function (data) {
+                                            if (data.data) {
+                                                window.location.href = '/Loan/Index';
+                                            }
+                                            else {
+                                                toastr.error(data.Message);
+                                            }
+                                        }
+                                    });
+                                }
+                                else {
+                                    toastr.error("Please note that the loan status should be Partially Paid");
+                                }
+                            }
+                            else if (loanDetails.PaymentBeforeSetReturnDate == true) {
+                                //This is one scenario: Actually a good client - making a payment before their actual return date - status should be kept at active when this kind of payment is made
+                                if ($('#ddlLoanStatus').val() === "1") {
+                                    loanDetails.ReturnDate = $('#txtOldReturnDate').val(); //chenge of return date is not permitted for the payment done before the actual return date 
+
+
+                                    $.ajax({
+                                        type: "POST",
+                                        url: '/Loan/UpdateLoanPayment',
+                                        data: { loanDetails: loanDetails },
+                                        success: function (data) {
+                                            if (data.data) {
+                                                window.location.href = '/Loan/Index';
+                                            }
+                                            else {
+                                                toastr.error(data.Message);
+                                            }
+                                        }
+                                    });
+                                }
+                                else {
+                                    toastr.error("For payments before the initial return date the status must remain active")
+                                }
                             }
                             else {
-                                toastr.error(data.Message);
+                                toastr.error("Please provide a new return date for the remaining balanace");
                             }
                         }
-                    });
-                }
-                else {
-                    //bad customer fails to pay atleast what they borrowed
-                    var loanDetails = {
-                        "LoanId": $('#LoanId').val(),
-                        "PaidAmount": $('#txtPaidAmount').val(),
-                        "ReturnDate": $('#txtLoanReturnDate').val(),
-                        "FullPayment": false,
-                        "LoanStatus": $('#ddlLoanStatus').val()
-                    };
-
-                    
-
-                    //do we have a a different return date ?
-                    if (new Date($('#txtLoanReturnDate').val()) >= new Date($('#txtOldReturnDate').val())) {
-                        if ($('#ddlLoanStatus').val() === "4") {
-                            $.ajax({
-                                type: "POST",
-                                url: '/Loan/UpdateLoanPayment',
-                                data: { loanDetails: loanDetails },
-                                success: function (data) {
-                                    if (data.data) {
-                                        window.location.href = '/Loan/Index';
-                                    }
-                                    else {
-                                        toastr.error(data.Message);
-                                    }
-                                }
-                            });
-                        }
-                        else {
-                            toastr.error("Please note that the loan status should be Partially Paid");
-                        }
-
-                      
                     }
-                    else {
-                        toastr.error("Please provide a new return date for the remaining balanace");
-                    }
-
                 }
-
-
+               
             }
         });
     }
     else {
-        //Collect Data Information 
+        //Quit an easy process - We incepting the loan so straight forward process
 
         if ($('#ddlCustomers').val() == '-1') {
             toastr.error("Please provide customer");

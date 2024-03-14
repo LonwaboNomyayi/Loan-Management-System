@@ -15,5 +15,6 @@ namespace DataAccessLayer.Contracts
         Task<List<LoanStatus>> GetLoanStatuses();
         Task<bool> RegisterLoan(LoanDetails loanDetais);
         Task<bool> UpdateLoanPayment(LoanDetailsDTO loanDetails);
+        Task<bool> DefaultLoan(LoanDetailsDTO loanDetails);
     }
 }

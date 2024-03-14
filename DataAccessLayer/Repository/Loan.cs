@@ -140,6 +140,7 @@ namespace DataAccessLayer.Repository
 					new SqlParameter("@PaidAmount", loanDetails.PaidAmount),
 					new SqlParameter("@LoanReturnDate", loanDetails.ReturnDate),
 					new SqlParameter("@RemainingAmount", loanDetails.RemainingPayment),
+					new SqlParameter("@PaymentBeforeSetReturnDate", loanDetails.PaymentBeforeSetReturnDate),
 					new SqlParameter("@LoanStatus", loanDetails.LoanStatus)
 				};
 				return await Task.Run(() => DbContext.ExecuteNonQuery("SP_UpdateLoanPayment", parameters));
@@ -153,29 +154,22 @@ namespace DataAccessLayer.Repository
 
 
 
-		//public async Task<bool> MarkLoanAsPaidUp(int LoanId)
-		//      {
-		//          try
-		//          {
+        public async Task<bool> DefaultLoan(LoanDetailsDTO loanDetails)
+		{
+            try
+            {
+				SqlParameter[] parameters = new SqlParameter[] {
+					new SqlParameter("@LoanId", loanDetails.LoanId),
+					new SqlParameter("@LoanStatus", loanDetails.LoanStatus)
+				};
+				return await Task.Run(() => DbContext.ExecuteNonQuery("SP_DefaultLoan", parameters));
+			}
+            catch (Exception ex)
+            {
 
+            }
+			return false;
+        }
 
-
-
-		//          }
-		//	catch(Exception ex)
-		//          {
-
-		//          }
-		//      }
-
-		#region Private Routines 
-		//public async Task<bool> MarkLoanAsPaidUpInternal(int LoanId)
-		//{
-
-		//}
-		#endregion
-
-
-
-	}
+    }
 }

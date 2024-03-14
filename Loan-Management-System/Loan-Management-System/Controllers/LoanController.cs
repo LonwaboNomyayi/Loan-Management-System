@@ -75,16 +75,17 @@ namespace Loan_Management_System.Controllers
             return Json(new { data = serviceResult }, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpPost]
-        //public async Task<JsonResult> MarkLoanAsPaidUp(int id)
-        //{
-
-        //}
+        [HttpPost]
+        public async Task<JsonResult> DefaultLoan(LoanDetailsDTO loanDetails)
+        {
+            var serviceResult = await _loans.DefaultLoan(loanDetails);
+            return Json(new { data = serviceResult }, JsonRequestBehavior.AllowGet);
+        }
 
         #endregion
 
         #region Private Routines 
-       
+
         #endregion
     }
 }
