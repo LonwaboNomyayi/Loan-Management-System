@@ -453,3 +453,8 @@ function AddOrUpdateLoan() {
        
     }
 }
+
+
+function GetStatement() {
+    window.location.href = "/Loan/Statements/" + $('#LoanId').val();
+}

@@ -31,6 +31,12 @@ namespace Loan_Management_System.Controllers
 
         }
 
+        public ActionResult Statements(int Id)
+        {
+            ViewBag.LoanId = Id;
+            return View();
+        }
+
         #endregion
 
 
@@ -81,6 +87,14 @@ namespace Loan_Management_System.Controllers
             var serviceResult = await _loans.DefaultLoan(loanDetails);
             return Json(new { data = serviceResult }, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public async Task<JsonResult> GetLoanStatements(int Id)
+        {
+            var serviceResult = await _loans.GetLoanStatements(Id);
+            return Json(new { data = serviceResult }, JsonRequestBehavior.AllowGet);
+        }
+
 
         #endregion
 

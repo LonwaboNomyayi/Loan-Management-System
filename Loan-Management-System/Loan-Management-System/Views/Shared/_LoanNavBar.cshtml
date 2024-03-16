@@ -1,0 +1,13 @@
+﻿
+
+<nav class="search-wrapper" style="padding-right: 10px; border-bottom: none;">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Loans", "Index", "Loan") </li> @*new { @style = "color: #65fe08;", @class = "list-items" })*@
+                <li><a onclick="GetLoanDetails()">Loan Details</a> </li>
+                <li><a onclick="GetStatement()">Statements</a> </li>
+            </ul>
+        </div>
+    </div>
+</nav>

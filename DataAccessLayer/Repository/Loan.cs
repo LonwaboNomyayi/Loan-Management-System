@@ -152,8 +152,6 @@ namespace DataAccessLayer.Repository
 			return false;
         }
 
-
-
         public async Task<bool> DefaultLoan(LoanDetailsDTO loanDetails)
 		{
             try
@@ -171,5 +169,36 @@ namespace DataAccessLayer.Repository
 			return false;
         }
 
-    }
+		public async Task<List<StatementDTO>> GetLoanStatements(int LoanId)
+        {
+            try
+            {
+				SqlParameter[] parameters = new SqlParameter[] { new SqlParameter("@LoanId", LoanId) };
+				DataTable dt = await Task.Run(() => DbContext.GetParamatizedQuery(("SP_GetLoanStatements"), parameters));
+
+				var loanStatement = new List<StatementDTO>();
+
+				foreach (DataRow row in dt.Rows)
+				{
+					var transaction = new StatementDTO
+					{
+						TransactionDate = DateTime.Parse(row["Loan_Transaction_Date"].ToString().Trim()).ToShortDateString(),
+						TransactionDescription = row["Loan_Transaction_Desc"].ToString().Trim(),
+						TransactionAmount = double.Parse(row["Loan_Transaction_Amount"].ToString().Trim()),
+						TransactionBalance = double.Parse(row["Loan_Transaction_Balance"].ToString().Trim())
+					};
+					loanStatement.Add(transaction);
+				}
+				return loanStatement;
+
+			}
+			catch(Exception ex)
+            {
+
+            }
+			return null;
+        }
+
+
+	}
 }

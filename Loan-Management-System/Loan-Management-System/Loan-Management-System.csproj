@@ -148,6 +148,7 @@
     <Content Include="Scripts\Application Scripts\Customer\CustomerDetails.js" />
     <Content Include="Scripts\Application Scripts\Loan\LoanDetails.js" />
     <Content Include="Scripts\Application Scripts\Loan\Loans.js" />
+    <Content Include="Scripts\Application Scripts\Loan\Statements.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -180,6 +181,8 @@
     <Content Include="Views\Customer\CustomerDetails.cshtml" />
     <Content Include="Views\Loan\Index.cshtml" />
     <Content Include="Views\Loan\LoanDetails.cshtml" />
+    <Content Include="Views\Shared\_LoanNavBar.cshtml" />
+    <Content Include="Views\Loan\Statements.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
