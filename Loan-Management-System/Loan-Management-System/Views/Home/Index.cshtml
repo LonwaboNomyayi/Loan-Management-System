@@ -1,7 +1,6 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
 <body>
     <div class="main-content">
         <main>
@@ -9,9 +8,9 @@
             <div class="dash-cards">
                 <div class="card-single">
                     <div class="card-body">
-                        <span class="ti-briefcase"></span>
+                        <span class="ti-briefcase" style="color: #fff"></span>
                         <div>
-                            <h5>Account Balance</h5>
+                            <h5>Total Amount Loaned</h5>
                             <h4>R30,659.45</h4>
                         </div>
                     </div>
@@ -21,179 +20,190 @@
                 </div>
 
 
-                <div class="card-single">
+                <div class="card-single" style="background-color: #FAA43A">
                     <div class="card-body">
-                        <span class="ti-reload"></span>
+                        <span class="ti-reload" style="color: #fff"></span>
                         <div>
-                            <h5>Pending</h5>
+                            <h5>Total Loan Return</h5>
                             <h4>R19,500.45</h4>
                         </div>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer" style="background-color: #FAA43A">
                         <a>View all</a>
                     </div>
                 </div>
 
-                <div class="card-single">
+                <div class="card-single" style="background-color: #5DA5DA">
                     <div class="card-body">
-                        <span class="ti-check-box"></span>
+                        <span class="ti-check-box" style="color: #fff"></span>
                         <div>
-                            <h5>Processed</h5>
+                            <h5>Total Projected Interest</h5>
                             <h4>R20,659</h4>
                         </div>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer" style="background-color: #5DA5DA">
                         <a>View all</a>
                     </div>
                 </div>
             </div>
 
+
             <section class="recent">
-                <div class="activity-grid">
-                    <div class="activity-card">
-                        <h3>Recent activity</h3>
-                        <div class="table-responsive">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Project</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
-                                        <th>Team</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>App Development</td>
-                                        <td>15 Aug, 2020</td>
-                                        <td>22 Aug, 2020</td>
-                                        <td class="td-team">
-                                            <div class="img-1"></div>
-                                            <div class="img-2"></div>
-                                            <div class="img-3"></div>
-                                        </td>
-                                        <td>
-                                            <span class="badge success">
-                                                Success
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Logo Design</td>
-                                        <td>15 Aug, 2020</td>
-                                        <td>22 Aug, 2020</td>
-                                        <td class="td-team">
-                                            <div class="img-1"></div>
-                                            <div class="img-2"></div>
-                                            <div class="img-3"></div>
-                                        </td>
-                                        <td>
-                                            <span class="badge warning">
-                                                Processing
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Server setup</td>
-                                        <td>15 Aug, 2020</td>
-                                        <td>22 Aug, 2020</td>
-                                        <td class="td-team">
-                                            <div class="img-1"></div>
-                                            <div class="img-2"></div>
-                                            <div class="img-3"></div>
-                                        </td>
-                                        <td>
-                                            <span class="badge success">
-                                                Success
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Front-end Design</td>
-                                        <td>15 Aug, 2020</td>
-                                        <td>22 Aug, 2020</td>
-                                        <td class="td-team">
-                                            <div class="img-1"></div>
-                                            <div class="img-2"></div>
-                                            <div class="img-3"></div>
-                                        </td>
-                                        <td>
-                                            <span class="badge warning">
-                                                Processing
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Web Development</td>
-                                        <td>15 Aug, 2020</td>
-                                        <td>22 Aug, 2020</td>
-                                        <td class="td-team">
-                                            <div class="img-1"></div>
-                                            <div class="img-2"></div>
-                                            <div class="img-3"></div>
-                                        </td>
-                                        <td>
-                                            <span class="badge success">
-                                                Success
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-
-                    </div>
-                    <div class="summmary">
-                        <div class="summary-card">
-                            <div class="summary-single">
-                                <span class="ti-id-badge"></span>
-                                <div>
-                                    <h5>196</h5>
-                                    <small>Number of staff</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="summary-card">
-                            <div class="summary-single">
-                                <span class="ti-calendar"></span>
-                                <div>
-                                    <h5>16</h5>
-                                    <small>Number of leave</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="summary-card">
-                            <div class="summary-single">
-                                <span class="ti-face-smile"></span>
-                                <div>
-                                    <h5>12</h5>
-                                    <small>Profile update request</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bday-card">
-                            <div class="bday-flex">
-                                <div class="bday-img"></div>
-
-                                <div class="bday-info">
-                                    <h5>Dwayne F. Sanders</h5>
-                                    <small>Birthday Today</small>
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <button>
-                                    <span class="ti-gift"></span>
-                                    Wish him
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <div class="chartContainer" style="height: 300px; width: 100%;"></div>
             </section>
+
+
+            @*<section class="recent">
+                    <div class="activity-grid">
+                        <div class="activity-card">
+                            <h3>Recent activity</h3>
+                            <div class="table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Project</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Team</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>App Development</td>
+                                            <td>15 Aug, 2020</td>
+                                            <td>22 Aug, 2020</td>
+                                            <td class="td-team">
+                                                <div class="img-1"></div>
+                                                <div class="img-2"></div>
+                                                <div class="img-3"></div>
+                                            </td>
+                                            <td>
+                                                <span class="badge success">
+                                                    Success
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Logo Design</td>
+                                            <td>15 Aug, 2020</td>
+                                            <td>22 Aug, 2020</td>
+                                            <td class="td-team">
+                                                <div class="img-1"></div>
+                                                <div class="img-2"></div>
+                                                <div class="img-3"></div>
+                                            </td>
+                                            <td>
+                                                <span class="badge warning">
+                                                    Processing
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Server setup</td>
+                                            <td>15 Aug, 2020</td>
+                                            <td>22 Aug, 2020</td>
+                                            <td class="td-team">
+                                                <div class="img-1"></div>
+                                                <div class="img-2"></div>
+                                                <div class="img-3"></div>
+                                            </td>
+                                            <td>
+                                                <span class="badge success">
+                                                    Success
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Front-end Design</td>
+                                            <td>15 Aug, 2020</td>
+                                            <td>22 Aug, 2020</td>
+                                            <td class="td-team">
+                                                <div class="img-1"></div>
+                                                <div class="img-2"></div>
+                                                <div class="img-3"></div>
+                                            </td>
+                                            <td>
+                                                <span class="badge warning">
+                                                    Processing
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Web Development</td>
+                                            <td>15 Aug, 2020</td>
+                                            <td>22 Aug, 2020</td>
+                                            <td class="td-team">
+                                                <div class="img-1"></div>
+                                                <div class="img-2"></div>
+                                                <div class="img-3"></div>
+                                            </td>
+                                            <td>
+                                                <span class="badge success">
+                                                    Success
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                        <div class="summmary">
+                            <div class="summary-card">
+                                <div class="summary-single">
+                                    <span class="ti-id-badge"></span>
+                                    <div>
+                                        <h5>196</h5>
+                                        <small>Number of staff</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="summary-card">
+                                <div class="summary-single">
+                                    <span class="ti-calendar"></span>
+                                    <div>
+                                        <h5>16</h5>
+                                        <small>Number of leave</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="summary-card">
+                                <div class="summary-single">
+                                    <span class="ti-face-smile"></span>
+                                    <div>
+                                        <h5>12</h5>
+                                        <small>Profile update request</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bday-card">
+                                <div class="bday-flex">
+                                    <div class="bday-img"></div>
+
+                                    <div class="bday-info">
+                                        <h5>Dwayne F. Sanders</h5>
+                                        <small>Birthday Today</small>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button>
+                                        <span class="ti-gift"></span>
+                                        Wish him
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>*@
         </main>
     </div>
 </body>
+@section scripts {
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.canvasjs.com/jquery.canvasjs.min.js"></script>
+    <script src="~/Scripts/Application Scripts/Home/Home.js"></script>
+}
 
