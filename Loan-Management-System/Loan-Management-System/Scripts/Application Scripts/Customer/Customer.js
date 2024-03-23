@@ -15,7 +15,7 @@ function loadDataTable() {
     $('#tblCustomers').DataTable({
         "ajax": {
             "type": 'GET',
-            "url": '/Customer/GetAllCUstomersForStore',
+            "url": '/Customer/GetAllCustomersForStore',
             "data": '{}',
             "contentType": 'application/json; charset=utf-8',
             "datatype": 'json',

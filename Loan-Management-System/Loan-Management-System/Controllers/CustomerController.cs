@@ -39,7 +39,7 @@ namespace Loan_Management_System.Controllers
 
 
         [HttpGet]
-        public async Task<JsonResult> GetAllCUstomersForStore()
+        public async Task<JsonResult> GetAllCustomersForStore()
         {
             //the user currently logged in must only see the customers linked to the store they are registered in
             

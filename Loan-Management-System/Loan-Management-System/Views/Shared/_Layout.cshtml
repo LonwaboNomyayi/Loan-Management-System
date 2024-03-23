@@ -30,9 +30,9 @@
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="">
+                    <a href="/Home/Index">
                         <span class="ti-home"></span>
-                        <span>Home</span>
+                        <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
@@ -42,41 +42,47 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
-                        <span class="ti-agenda"></span>
-                        <span>Tasks</span>
+                    <a href="/Loan/Index">
+                        <span class="ti-money"></span>
+                        <span>Loans</span>
                     </a>
                 </li>
                 <li>
-                    <a href="">
-                        <span class="ti-clipboard"></span>
-                        <span>Leave</span>
+                    <a href="/Account/SignIn">
+                        <span class="ti-user"></span>
+                        <span>Sign Out</span>
                     </a>
                 </li>
-                <li>
-                    <a href="">
-                        <span class="ti-folder"></span>
-                        <span>Projects</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <span class="ti-time"></span>
-                        <span>Timesheets</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <span class="ti-book"></span>
-                        <span>Contacts</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <span class="ti-settings"></span>
-                        <span>Account</span>
-                    </a>
-                </li>
+                @*<li>
+            <a href="">
+                <span class="ti-m"></span>
+                <span>Leave</span>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span class="ti-folder"></span>
+                <span>Projects</span>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span class="ti-time"></span>
+                <span>Timesheets</span>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span class="ti-book"></span>
+                <span>Contacts</span>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span class="ti-settings"></span>
+                <span>Account</span>
+            </a>
+        </li>*@
             </ul>
         </div>
     </div>
@@ -85,13 +91,13 @@
     <div class="main-content">
         <header>
             <div class="search-wrapper">
-                <span class="ti-search"></span>
-                <input type="search" placeholder="Search" />
+                @*<span class="ti-search"></span>
+                <input type="search" placeholder="Search" />*@
             </div>
 
             <div class="social-icons">
                 <span class=""></span>
-                <span class=""><strong>Username: @SessionHelper.GetUserInfo.UserlogInName</strong></span>
+                <span class=""><strong><span class="ti-user"></span> Username: @SessionHelper.GetUserInfo.UserlogInName</strong></span>
                 <div></div>
             </div>
         </header>
