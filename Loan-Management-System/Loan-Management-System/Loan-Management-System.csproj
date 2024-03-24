@@ -184,6 +184,13 @@
     <Content Include="Views\Loan\LoanDetails.cshtml" />
     <Content Include="Views\Shared\_LoanNavBar.cshtml" />
     <Content Include="Views\Loan\Statements.cshtml" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

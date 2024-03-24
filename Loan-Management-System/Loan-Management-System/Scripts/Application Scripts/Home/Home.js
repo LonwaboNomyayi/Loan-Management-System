@@ -2,10 +2,10 @@
 
 	$(".chartContainer").CanvasJSChart({
 		title: {
-			text: "Monthly Loan, Interest and Return Totals - 2024"
+			text: "Monthly Interest - 2024"
 		},
 		axisY: {
-			title: "Monthly Loan, Interest and Return Totals in R",
+			title: "Monthly Interest in R",
 			includeZero: false
 		},
 		axisX: {
