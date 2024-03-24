@@ -199,6 +199,29 @@ namespace DataAccessLayer.Repository
 			return null;
         }
 
+		public async Task<LoanTotalDTO> GetLoanTotalsForCurrentMonthAsync(int branchId)
+        {
+            try
+            {
+				SqlParameter[] parameters = new SqlParameter[] { new SqlParameter("@BranchId", branchId) };
+				DataTable dt = await Task.Run(() => DbContext.GetParamatizedQuery(("SP_Get_DashboardData"), parameters));
 
+				if (dt.Rows.Count > 0)
+				{
+					return new LoanTotalDTO
+					{
+						TotalLoanedAmount = double.Parse(dt.Rows[0]["TotalAmountLoaned"].ToString().Trim()),  
+						TotalReturnAmount = double.Parse(dt.Rows[0]["TotalReturnAmount"].ToString().Trim()),
+						TotalInterest = double.Parse(dt.Rows[0]["TotalInterestAmount"].ToString().Trim())
+					};
+
+				}
+			}
+			catch(Exception ex)
+            {
+
+            }
+			return null;
+        }
 	}
 }
