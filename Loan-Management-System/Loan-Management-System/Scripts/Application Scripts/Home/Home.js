@@ -106,6 +106,7 @@
 					monthDataReturnLoanTotal[item.MonthIndex - 1].y = item.ReturnedLoanTotalPerMonth;
 					monthDataLossRatio[item.MonthIndex - 1].y = item.TotalLossRatio
 				});
+
 				var month = (new Date).getMonth() + 1;
 
 				monthDataInterest.splice(month, monthDataInterest.length - month);
@@ -118,7 +119,7 @@
 						text: "Monthly Interest - 2024"
 					},
 					axisY: {
-						title: "Monthly Interest in R",
+						title: "Rands",
 						includeZero: false
 					},
 					axisX: {
