@@ -54,6 +54,8 @@
     <Compile Include="DbContext.cs" />
     <Compile Include="DTO\LoanDetailsDTO.cs" />
     <Compile Include="DTO\LoanDTO.cs" />
+    <Compile Include="DTO\LoanLineGraphDTO.cs" />
+    <Compile Include="DTO\LoanTotalDTO.cs" />
     <Compile Include="DTO\StatementDTO.cs" />
     <Compile Include="DTO\UserDetails.cs" />
     <Compile Include="Contracts\IAccounts.cs" />

@@ -199,6 +199,56 @@ namespace DataAccessLayer.Repository
 			return null;
         }
 
+		public async Task<LoanTotalDTO> GetLoanTotalsForCurrentMonthAsync(int branchId)
+        {
+            try
+            {
+				SqlParameter[] parameters = new SqlParameter[] { new SqlParameter("@BranchId", branchId) };
+				DataTable dt = await Task.Run(() => DbContext.GetParamatizedQuery(("SP_Get_DashboardData"), parameters));
 
+				if (dt.Rows.Count > 0)
+				{
+					return new LoanTotalDTO
+					{
+						TotalLoanedAmount = double.Parse(dt.Rows[0]["TotalAmountLoaned"].ToString().Trim()),  
+						TotalReturnAmount = double.Parse(dt.Rows[0]["TotalReturnAmount"].ToString().Trim()),
+						TotalInterest = double.Parse(dt.Rows[0]["TotalInterestAmount"].ToString().Trim())
+					};
+
+				}
+			}
+			catch(Exception ex)
+            {
+
+            }
+			return null;
+        }
+
+		public async Task<List<LoanLineGraphDTO>> GetLineGraphInfo()
+        {
+            try
+            {
+				DataTable dt = await Task.Run(() => DbContext.GetSelectQuery("Get_LineGraphSummaryData"));
+				var totalsummaries = new List<LoanLineGraphDTO>();
+				foreach (DataRow row in dt.Rows)
+				{
+					totalsummaries.Add(new LoanLineGraphDTO
+												{
+													MonthIndex = int.Parse(row["MonthIndex"].ToString().Trim()),
+													CreditFacilitiesPerMonth = double.Parse(row["CreditFacilitiesPerMonth"].ToString().Trim()),
+													ReturnedLoanTotalPerMonth = double.Parse(row["ReturnedLoanTotalPerMonth"].ToString().Trim()),
+													LoanReceivedInterestPerMonth = double.Parse(row["LoanInterestPerMonth"].ToString().Trim()),
+													TotalLossRatio = double.Parse(row["TotalLossRatio"].ToString().Trim())
+												});
+
+				}
+				return totalsummaries;
+			}
+			catch(Exception ex)
+            {
+
+            }
+			return null;
+        }
 	}
 }

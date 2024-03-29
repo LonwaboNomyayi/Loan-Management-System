@@ -112,7 +112,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #ccc;
+   /* border-bottom: 1px solid #ccc;*/
     transition: left 500ms;
 }
 
@@ -189,12 +189,12 @@ main {
     }
 
     .card-body h5 {
-        color: var(--color-dark);
-        font-size: 1rem;
+        color: #fff;
+        font-size: 1.5rem;
     }
 
     .card-body h4 {
-        color: var(--color-dark);
+        color: #fff;
         font-size: 1.8rem;
         margin-top: .2rem;
     }
@@ -434,6 +434,10 @@ tbody tr:nth-child(even) {
 
     .card-single {
         margin-bottom: 1rem;
+    }
+
+    .card-description{
+        color: #fff;
     }
 
     .activity-grid {

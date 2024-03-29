@@ -95,7 +95,25 @@ namespace Loan_Management_System.Controllers
             return Json(new { data = serviceResult }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public async Task<JsonResult> GetLoanTotalsForCurrentMonth()
+        {
+            var branch = SessionHelper.GetUserInfo;
+            if (branch != null)
+            {
+                var serviceResults = await _loans.GetLoanTotalsForCurrentMonthAsync(branch.UserStoreId);
+                return Json(new { data = serviceResults }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = false }, JsonRequestBehavior.AllowGet);
+        }
 
+
+        [HttpGet]
+        public async Task<JsonResult> GetLineGraphInfoSummaries()
+        {
+            var serverResults = await _loans.GetLineGraphInfo();
+            return Json(new { data = serverResults }, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region Private Routines 

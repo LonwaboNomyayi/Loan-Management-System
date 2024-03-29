@@ -6,33 +6,36 @@
 <<div class="main-content">
     @Html.Partial("~/Views/Shared/_LoanNavBar.cshtml")
      <main>
-         <div id="accordion">
-             <div class="card">
-                 <div class="card-header" id="headingOne">
-                     <h5 class="mb-0">
-                         <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                             Loan Statement
-                         </button>
-                     </h5>
-                 </div>
-
-                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                     <div class="card-body">
-                         <table id="tblLoanStatements" class="table table-striped table-bordered" style="width: 100%; font-size: smaller; background-color:#fff">
-                             <thead style="font-size: x-small; background-color: black;">
-                                 <tr>
-                                     <th style="color: #fff;">Transaction Date</th>
-                                     <th style="color: #fff;">Transaction Description</th>
-                                     <th style="color: #fff;">Transaction Amount</th>
-                                     <th style="color: #fff;">Running Loan Balance</th>
-                                 </tr>
-                             </thead>
-                         </table>
-                     </div>
-                 </div>
-             </div>
-             </div>
+         <div style="margin-top:15px;margin-bottom: 25px;">
+             <h2 class="dash-title">Loan Statement</h2>
          </div>
+         @*<div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Loan Statement
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>*@
+         <table id="tblLoanStatements" class="table table-striped table-bordered" style="width: 100%; font-size: smaller; background-color:#fff">
+             <thead style="font-size: x-small; background-color: black;">
+                 <tr>
+                     <th style="color: #fff;">Transaction Date</th>
+                     <th style="color: #fff;">Transaction Description</th>
+                     <th style="color: #fff;">Transaction Amount</th>
+                     <th style="color: #fff;">Running Loan Balance</th>
+                 </tr>
+             </thead>
+         </table>
      </main>
 </div>
 @section scripts{

@@ -34,10 +34,11 @@ namespace Loan_Management_System.Controllers
                     //then call the SessionHelper to store the userdetails - as we may need this information in some parts of the system 
                     SessionHelper.SetUserDetails(userDetails);
 
-                    Json(new { success = true });
+                    return Json(new { success = true });
                 }
+                return Json(new { success = false });
             }
-            return Json(new { success = true });
+            return Json(new { success = false });
         }
     }
 }
