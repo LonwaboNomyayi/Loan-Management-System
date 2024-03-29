@@ -7,12 +7,13 @@
     <main>
         <div style="margin-top:15px;margin-bottom: 15px;">
             <h2 class="dash-title">Loans</h2>
-            <a class="btn btn-primary" onclick="navigateToLoanDetails('0')" style="float: right; margin-right:0;"><span class="ti-plus"></span> Add Loan</a>
+            @*<a class="btn btn-primary" onclick="navigateToLoanDetails('0')" style="float: right; margin-right:0;"><span class="ti-plus"></span> Add Loan</a>*@
+        <a class='btn btn-sm' style='background-color:#00246B; color:#fff;float: right;' onclick="navigateToLoanDetails('0')"><span class="ti-plus" style='color:#fff'></span> Add Loan</a>
         </div>
         <div class="col-lg-12" style="margin-top:15px;margin-bottom: 15px;">
             <div class="col-lg-10">
             </div>
-            <div class="col-lg-2" style="margin-top:15px;margin-bottom: 15px;">
+            <div class="col-lg-2" style="margin-top:5px;margin-bottom: 5px;">
                 <div style="float:right;">
                     <div id="accordion">
                         <div class="card">
@@ -26,16 +27,16 @@
                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                                 <div class="card-body">
                                     <div style="width:60px; height:50px;">
-                                        <span class="badge" style="background-color: #CAD4DF; margin-bottom:5px;">
+                                        <span class="badge" style="background-color: #CAD4DF; margin-bottom:5px; font-size: 1.5rem;">
                                             Default Loans
                                         </span>
-                                        <span class="badge" style="background-color: red; color: #fff; margin-bottom: 5px; ">
+                                        <span class="badge" style="background-color: red; color: #fff; margin-bottom: 5px; font-size: 1.5rem;">
                                             Missed Payments
                                         </span>
-                                        <span class="badge" style="background-color: #8AB6F9; color: #fff; margin-bottom: 5px;">
+                                        <span class="badge" style="background-color: #8AB6F9; color: #fff; margin-bottom: 5px; font-size: 1.5rem;">
                                             Collection in few days
                                         </span>
-                                        <span class="badge" style="background-color: #2963A2; color: #fff; margin-bottom: 5px; ">
+                                        <span class="badge" style="background-color: #2963A2; color: #fff; margin-bottom: 5px; font-size: 1.5rem;">
                                             Collection
                                         </span>
                                     </div>

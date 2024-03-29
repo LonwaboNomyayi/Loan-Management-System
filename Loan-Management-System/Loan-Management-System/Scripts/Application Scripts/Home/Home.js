@@ -33,107 +33,210 @@
 		}
 	})
 
+	var monthDataInterest = [
+		{ label: "Jan", y: 0 },
+		{ label: "Feb", y: 0 },
+		{ label: "March", y: 0 },
+		{ label: "April", y: 0 },
+		{ label: "May", y: 0},
+		{ label: "June", y: 0 },
+		{ label: "July", y: 0 },
+		{ label: "Aug", y: 0 },
+		{ label: "Sep", y: 0 },
+		{ label: "Oct", y: 0 },
+		{ label: "Nov", y: 0 },
+		{ label: "Dec", y: 0 }
+	];
+
+	var monthDataCreditFacilities = [
+		{ label: "Jan", y: 0 },
+		{ label: "Feb", y: 0 },
+		{ label: "March", y: 0 },
+		{ label: "April", y: 0 },
+		{ label: "May", y: 0 },
+		{ label: "June", y: 0 },
+		{ label: "July", y: 0 },
+		{ label: "Aug", y: 0 },
+		{ label: "Sep", y: 0 },
+		{ label: "Oct", y: 0 },
+		{ label: "Nov", y: 0 },
+		{ label: "Dec", y: 0 }
+	];
+
+	var monthDataReturnLoanTotal = [
+		{ label: "Jan", y: 0 },
+		{ label: "Feb", y: 0 },
+		{ label: "March", y: 0 },
+		{ label: "April", y: 0 },
+		{ label: "May", y: 0 },
+		{ label: "June", y: 0 },
+		{ label: "July", y: 0 },
+		{ label: "Aug", y: 0 },
+		{ label: "Sep", y: 0 },
+		{ label: "Oct", y: 0 },
+		{ label: "Nov", y: 0 },
+		{ label: "Dec", y: 0 }
+	];
+
+	var monthDataLossRatio = [
+		{ label: "Jan", y: 0 },
+		{ label: "Feb", y: 0 },
+		{ label: "March", y: 0 },
+		{ label: "April", y: 0 },
+		{ label: "May", y: 0 },
+		{ label: "June", y: 0 },
+		{ label: "July", y: 0 },
+		{ label: "Aug", y: 0 },
+		{ label: "Sep", y: 0 },
+		{ label: "Oct", y: 0 },
+		{ label: "Nov", y: 0 },
+		{ label: "Dec", y: 0 }
+	];
 
 
+	$.ajax({
+		type: "GET",
+		url: "/Loan/GetLineGraphInfoSummaries/",
+		data: "{}",
+		success: function (data) {
+			if (data.data != null) {
+				$.each(data.data, function (k, item) {
+					monthDataInterest[item.MonthIndex - 1].y = item.LoanReceivedInterestPerMonth;
+					monthDataCreditFacilities[item.MonthIndex - 1].y = item.CreditFacilitiesPerMonth;
+					monthDataReturnLoanTotal[item.MonthIndex - 1].y = item.ReturnedLoanTotalPerMonth;
+					monthDataLossRatio[item.MonthIndex - 1].y = item.TotalLossRatio
+				});
+				var month = (new Date).getMonth() + 1;
 
-	$(".chartContainer").CanvasJSChart({
-		title: {
-			text: "Monthly Interest - 2024"
-		},
-		axisY: {
-			title: "Monthly Interest in R",
-			includeZero: false
-		},
-		axisX: {
-			interval: 1
-		},
-		data: [
-			{
-				type: "line", //try changing to column, area
-				toolTipContent: "{label}: {y} R",
-				dataPoints: [
-					{ label: "Jan", y: 10000},
-					{ label: "Feb", y: 12000 },
-					{ label: "March", y: 15000 }
-					//{ label: "April", y: 4.81 },
-					//{ label: "May", y: 2.37 },
-					//{ label: "June", y: 2.33 },
-					//{ label: "July", y: 3.06 },
-					//{ label: "Aug", y: 2.94 },
-					//{ label: "Sep", y: 5.41 },
-					//{ label: "Oct", y: 2.17 },
-					//{ label: "Nov", y: 2.17 },
-					//{ label: "Dec", y: 2.80 }
-				]
-			}
-		]
+				monthDataInterest.splice(month, monthDataInterest.length - month);
+				monthDataCreditFacilities.splice(month, monthDataCreditFacilities.length - month);
+				monthDataReturnLoanTotal.splice(month, monthDataReturnLoanTotal.length - month);
+				monthDataLossRatio.splice(month, monthDataLossRatio.length - month);
+
+				$(".chartContainer").CanvasJSChart({
+					title: {
+						text: "Monthly Interest - 2024"
+					},
+					axisY: {
+						title: "Monthly Interest in R",
+						includeZero: false
+					},
+					axisX: {
+						interval: 1
+					},
+					data: [
+						{
+							type: "line", //try changing to column, area
+							toolTipContent: "{label}: ZAR {y} Interest",
+							dataPoints: monthDataInterest
+						},
+						{
+							type: "line", //try changing to column, area
+							toolTipContent: "{label}: ZAR {y} Credit Facility",
+							dataPoints: monthDataCreditFacilities
+						},
+						{
+							type: "line", //try changing to column, area
+							toolTipContent: "{label}: ZAR {y} Total Paid",
+							dataPoints: monthDataReturnLoanTotal
+						}
+					]
+				});
+
+				//Ratio
+				$("#chartContainerBarGraph").CanvasJSChart({
+					title: {
+						text: "Loss Ratio - 2024"
+					},
+					axisY: {
+						title: "Loss Ratio in %",
+						includeZero: false
+					},
+					axisX: {
+						interval: 1
+					},
+					data: [
+						{
+							type: "line", //try changing to column, area
+							toolTipContent: "{Loss Ratio}: {y} %",
+							dataPoints: monthDataLossRatio
+						}
+					]
+				});
+            }
+		}
+
 	});
 
 
-	var chart = new CanvasJS.Chart("chartContainerBarGraph", {
-		animationEnabled: true,
-		title: {
-			text: "Olympic Medals of all Times (till 2016 Olympics)"
-		},
-		axisY: {
-			title: "Medals",
-			includeZero: true
-		},
-		legend: {
-			cursor: "pointer",
-			itemclick: toggleDataSeries
-		},
-		toolTip: {
-			shared: true,
-			content: toolTipFormatter
-		},
-		data: [{
-			type: "bar",
-			showInLegend: true,
-			name: "Gold",
-			color: "gold",
-			dataPoints: [
-				{ y: 243, label: "Italy" },
-				{ y: 236, label: "China" },
-				{ y: 243, label: "France" },
-				{ y: 273, label: "Great Britain" },
-				{ y: 269, label: "Germany" },
-				{ y: 196, label: "Russia" },
-				{ y: 1118, label: "USA" }
-			]
-		},
-		{
-			type: "bar",
-			showInLegend: true,
-			name: "Silver",
-			color: "silver",
-			dataPoints: [
-				{ y: 212, label: "Italy" },
-				{ y: 186, label: "China" },
-				{ y: 272, label: "France" },
-				{ y: 299, label: "Great Britain" },
-				{ y: 270, label: "Germany" },
-				{ y: 165, label: "Russia" },
-				{ y: 896, label: "USA" }
-			]
-		},
-		{
-			type: "bar",
-			showInLegend: true,
-			name: "Bronze",
-			color: "#A57164",
-			dataPoints: [
-				{ y: 236, label: "Italy" },
-				{ y: 172, label: "China" },
-				{ y: 309, label: "France" },
-				{ y: 302, label: "Great Britain" },
-				{ y: 285, label: "Germany" },
-				{ y: 188, label: "Russia" },
-				{ y: 788, label: "USA" }
-			]
-		}]
-	});
-	chart.render();
+
+	
+
+
+	//var chart = new CanvasJS.Chart("chartContainerBarGraph", {
+	//	animationEnabled: true,
+	//	title: {
+	//		text: "Olympic Medals of all Times (till 2016 Olympics)"
+	//	},
+	//	axisY: {
+	//		title: "Medals",
+	//		includeZero: true
+	//	},
+	//	legend: {
+	//		cursor: "pointer",
+	//		itemclick: toggleDataSeries
+	//	},
+	//	toolTip: {
+	//		shared: true,
+	//		content: toolTipFormatter
+	//	},
+	//	data: [{
+	//		type: "bar",
+	//		showInLegend: true,
+	//		name: "Gold",
+	//		color: "gold",
+	//		dataPoints: [
+	//			{ y: 243, label: "Italy" },
+	//			{ y: 236, label: "China" },
+	//			{ y: 243, label: "France" },
+	//			{ y: 273, label: "Great Britain" },
+	//			{ y: 269, label: "Germany" },
+	//			{ y: 196, label: "Russia" },
+	//			{ y: 1118, label: "USA" }
+	//		]
+	//	},
+	//	{
+	//		type: "bar",
+	//		showInLegend: true,
+	//		name: "Silver",
+	//		color: "silver",
+	//		dataPoints: [
+	//			{ y: 212, label: "Italy" },
+	//			{ y: 186, label: "China" },
+	//			{ y: 272, label: "France" },
+	//			{ y: 299, label: "Great Britain" },
+	//			{ y: 270, label: "Germany" },
+	//			{ y: 165, label: "Russia" },
+	//			{ y: 896, label: "USA" }
+	//		]
+	//	},
+	//	{
+	//		type: "bar",
+	//		showInLegend: true,
+	//		name: "Bronze",
+	//		color: "#A57164",
+	//		dataPoints: [
+	//			{ y: 236, label: "Italy" },
+	//			{ y: 172, label: "China" },
+	//			{ y: 309, label: "France" },
+	//			{ y: 302, label: "Great Britain" },
+	//			{ y: 285, label: "Germany" },
+	//			{ y: 188, label: "Russia" },
+	//			{ y: 788, label: "USA" }
+	//		]
+	//	}]
+	//});
+	//chart.render();
 
 	
 

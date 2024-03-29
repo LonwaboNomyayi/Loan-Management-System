@@ -106,6 +106,14 @@ namespace Loan_Management_System.Controllers
             }
             return Json(new { data = false }, JsonRequestBehavior.AllowGet);
         }
+
+
+        [HttpGet]
+        public async Task<JsonResult> GetLineGraphInfoSummaries()
+        {
+            var serverResults = await _loans.GetLineGraphInfo();
+            return Json(new { data = serverResults }, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region Private Routines 

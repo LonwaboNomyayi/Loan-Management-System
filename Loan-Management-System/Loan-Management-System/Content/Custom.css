@@ -112,7 +112,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #ccc;
+   /* border-bottom: 1px solid #ccc;*/
     transition: left 500ms;
 }
 

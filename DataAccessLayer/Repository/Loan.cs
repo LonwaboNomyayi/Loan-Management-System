@@ -223,5 +223,32 @@ namespace DataAccessLayer.Repository
             }
 			return null;
         }
+
+		public async Task<List<LoanLineGraphDTO>> GetLineGraphInfo()
+        {
+            try
+            {
+				DataTable dt = await Task.Run(() => DbContext.GetSelectQuery("Get_LineGraphSummaryData"));
+				var totalsummaries = new List<LoanLineGraphDTO>();
+				foreach (DataRow row in dt.Rows)
+				{
+					totalsummaries.Add(new LoanLineGraphDTO
+												{
+													MonthIndex = int.Parse(row["MonthIndex"].ToString().Trim()),
+													CreditFacilitiesPerMonth = double.Parse(row["CreditFacilitiesPerMonth"].ToString().Trim()),
+													ReturnedLoanTotalPerMonth = double.Parse(row["ReturnedLoanTotalPerMonth"].ToString().Trim()),
+													LoanReceivedInterestPerMonth = double.Parse(row["LoanInterestPerMonth"].ToString().Trim()),
+													TotalLossRatio = double.Parse(row["TotalLossRatio"].ToString().Trim())
+												});
+
+				}
+				return totalsummaries;
+			}
+			catch(Exception ex)
+            {
+
+            }
+			return null;
+        }
 	}
 }
