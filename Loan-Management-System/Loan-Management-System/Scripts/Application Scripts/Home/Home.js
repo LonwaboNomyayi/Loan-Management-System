@@ -144,6 +144,7 @@
 					]
 				});
 
+
 				//Ratio
 				$("#chartContainerBarGraph").CanvasJSChart({
 					title: {
