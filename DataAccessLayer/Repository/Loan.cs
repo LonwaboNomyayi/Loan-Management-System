@@ -250,5 +250,37 @@ namespace DataAccessLayer.Repository
             }
 			return null;
         }
+
+		public async Task<List<LoanDTO>> GetAllCollectionsForStore(int StoreKey, int month)
+        {
+            try
+            {
+				SqlParameter[] parameters = new SqlParameter[] { new SqlParameter("@StoreKey", StoreKey), new SqlParameter("@month", month) };
+				DataTable dt = await Task.Run(() => DbContext.GetParamatizedQuery("SP_GetCollectionsForStore", parameters));
+
+				List<LoanDTO> collections = new List<LoanDTO>();
+
+				foreach (DataRow row in dt.Rows)
+				{
+					collections.Add(
+						new LoanDTO
+						{
+							LoanID = (int)row["Loan_Key"],
+							LoanDate = DateTime.Parse(row["Loan_Date"].ToString().Trim()).ToShortDateString(),
+							LoanHolder = row["Loan_Customer_Name"].ToString().Trim(),
+							LoanAmount = double.Parse(row["Loan_Amount"].ToString().Trim()),
+							ReturnDate = DateTime.Parse(row["Loan_Return_Date"].ToString().Trim()).ToShortDateString(),
+							ReturnAmount = double.Parse(row["Loan_Return_Amount"].ToString().Trim()),
+							InterestCharged = double.Parse(row["Loan_Interest"].ToString().Trim())
+						});
+				}
+				return collections;
+			}
+			catch(Exception ex)
+            {
+
+            }
+			return null;
+        }
 	}
 }

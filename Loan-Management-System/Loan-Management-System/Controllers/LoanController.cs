@@ -114,6 +114,13 @@ namespace Loan_Management_System.Controllers
             var serverResults = await _loans.GetLineGraphInfo();
             return Json(new { data = serverResults }, JsonRequestBehavior.AllowGet);
         }
+
+        public async Task<JsonResult> GetAllCollectionsForStore(int month)
+        {
+            var branch = SessionHelper.GetUserInfo.UserStoreId;
+            var serverResults = await _loans.GetAllCollectionsForStore(branch, month);
+            return Json(new { data = serverResults }, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region Private Routines 
