@@ -205,7 +205,7 @@ main {
 }
 
     .card-footer a {
-        color: var(--main-color)
+        color: #fff;
     }
 
 .recent {

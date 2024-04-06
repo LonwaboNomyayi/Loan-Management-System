@@ -8,8 +8,10 @@
         <div style="margin-top:15px;margin-bottom: 15px;">
             <h2 class="dash-title">Collections</h2>
         </div>
+        <select id="ddlMonths" class="form-control"></select>
         <div class="col-lg-12" style="margin-top:15px;margin-bottom: 15px;">
             <div class="col-lg-10">
+
             </div>
             <div class="col-lg-2" style="margin-top:5px;margin-bottom: 5px;">
                 <div style="float:right;">
@@ -46,7 +48,7 @@
 
         </div>
 
-        <table id="tblLoans" class="table table-striped table-bordered" style="width: 100%; font-size: smaller;">
+        <table id="tblCollections" class="table table-striped table-bordered" style="width: 100%; font-size: smaller;">
             <thead style="font-size: x-small;">
                 <tr>
                     <th></th>
@@ -62,4 +64,8 @@
         </table>
     </main>
 </div>
+
+@section scripts{
+    <script src="~/Scripts/Application Scripts/Loan/Collections.js"></script>
+}
 

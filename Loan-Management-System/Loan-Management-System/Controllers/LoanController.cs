@@ -120,10 +120,11 @@ namespace Loan_Management_System.Controllers
             return Json(new { data = serverResults }, JsonRequestBehavior.AllowGet);
         }
 
-        public async Task<JsonResult> GetAllCollectionsForStore(int month)
+        [HttpGet]
+        public async Task<JsonResult> GetAllCollectionsForStore(int Id)
         {
             var branch = SessionHelper.GetUserInfo.UserStoreId;
-            var serverResults = await _loans.GetAllCollectionsForStore(branch, month);
+            var serverResults = await _loans.GetAllCollectionsForStore(branch, Id);
             return Json(new { data = serverResults }, JsonRequestBehavior.AllowGet);
         }
         #endregion
