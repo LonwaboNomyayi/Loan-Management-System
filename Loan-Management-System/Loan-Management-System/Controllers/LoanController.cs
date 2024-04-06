@@ -42,6 +42,12 @@ namespace Loan_Management_System.Controllers
             return View();
         }
 
+        public ActionResult LoanCollection(int Id)
+        {
+            ViewBag.Id = Id;
+            return View();
+        }
+
         #endregion
 
 

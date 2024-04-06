@@ -187,6 +187,7 @@
     <Content Include="Views\Loan\Statements.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Views\Loan\Collections.cshtml" />
+    <Content Include="Views\Loan\LoanCollection.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

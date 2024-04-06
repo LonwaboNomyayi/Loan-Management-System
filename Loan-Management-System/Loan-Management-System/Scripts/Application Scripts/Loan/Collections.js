@@ -76,7 +76,7 @@ function LoadCollections() {
                 "render": function (data, type, full) {
                     if (data != "") {
                         var customerId = data;
-                        return "<a class='btn btn-sm' style='background-color:#00246B; color:#fff;float: right;' onclick=navigateToLoanDetails('" + data + "')><span class ='ti-pencil-alt' style='color:#fff'></span> Edit</a>";
+                        return "<a class='btn btn-sm' style='background-color:#00246B; color:#fff;float: right;' onclick=navigateToCollectionDetails('" + data + "')><span class ='ti-pencil-alt' style='color:#fff'></span> Edit</a>";
                     }
                 }
             }
@@ -115,4 +115,8 @@ function LoadCollections() {
         },
     });
 
+}
+
+function navigateToCollectionDetails(Id) {
+    window.location.href = "/Loan/LoanCollection/" + Id;
 }

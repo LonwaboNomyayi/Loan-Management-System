@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "LoanCollection";
+}
+
+<div class="main-content">
+    @Html.Partial("~/Views/Shared/_LoanNavBar.cshtml")
+
+    <input id="txtLoanCollectionId" value="@ViewBag.Id" type="hidden"/>
+    <main>
+        <div style="margin-top:15px;margin-bottom: 25px;">
+            <h2 class="dash-title">Collection Details</h2>
+        </div>
+        <div>
+            <div class="col-lg-12 form-fields">
+                <div class="col-lg-4">
+                    <label>Collection Date</label>
+                </div>
+                <div class="col-lg-4">
+                    <input id="txtCollectionDate" class="form-control" type="date" />
+                </div>
+            </div>
+            <div class="col-lg-12 form-fields ">
+                <div class="col-lg-4">
+                    <label>Loan Holder</label>
+                </div>
+                <div class="col-lg-4">
+                    <input id="txtCustomer" name="txtCustomer" class="form-control"/>
+                </div>
+            </div>
+            <div class="col-lg-12 form-fields ">
+                <div class="col-lg-4">
+                    <label>Collection Amount</label>
+                </div>
+                <div class="col-lg-4">
+                    <input id="txtCollectionAmount" class="form-control" />
+                </div>
+            </div>
+            <div class="col-lg-12 form-fields ">
+                <div class="col-lg-4">
+                    <label>Repayment Date</label>
+                </div>
+                <div class="col-lg-4">
+                    <input id="txtRepaymentDate" class="form-control" type="date" />
+                </div>
+            </div>
+            <div class="col-lg-12 form-fields ">
+                <div class="col-lg-4">
+                    <label>Settlement Amount</label>
+                </div>
+                <div class="col-lg-4">
+                    <input id="txtSettlementAmount" class="form-control" />
+                </div>
+            </div>
+            <div id="PaidContainer" class="col-lg-12 form-fields" hidden>
+                <div class="col-lg-4">
+                    <label>Paid Amount</label>
+                </div>
+                <div class="col-lg-4">
+                    <input id="txtPaidAmount" class="form-control" />
+                </div>
+            </div>
+            <div class="col-lg-12 form-fields ">
+                <div class="col-lg-4">
+                </div>
+                <div class="col-lg-4">
+                    <button class="btn btn-primary" onclick="UpdateCollection()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
