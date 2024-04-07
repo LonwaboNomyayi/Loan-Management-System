@@ -152,10 +152,8 @@ namespace Loan_Management_System.Controllers
 
         #region Private Routines 
 
-        public CollectionDetails GetCollectionDetailsInternal(LoanDetails loan, CustomerDetails customer)
+        private CollectionDetails GetCollectionDetailsInternal(LoanDetails loan, CustomerDetails customer)
         {
-            //var customerDataObject = await _customer.GetCustomerDetailsByKey(loan.LoanCustomerKey);
-            //var customer = customerDataObject;
             var customerFullname = customer.Name + " " + customer.Surname;
 
             return new CollectionDetails
