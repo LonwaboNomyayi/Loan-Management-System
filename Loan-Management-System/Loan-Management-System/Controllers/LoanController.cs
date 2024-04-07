@@ -16,6 +16,7 @@ namespace Loan_Management_System.Controllers
     {
         // GET: Loan
         private readonly ILoan _loans = new Wrapper().Loan;
+        private readonly ICustomer _customer = new Wrapper().Customer;
 
 
         #region Views 
@@ -133,9 +134,41 @@ namespace Loan_Management_System.Controllers
             var serverResults = await _loans.GetAllCollectionsForStore(branch, Id);
             return Json(new { data = serverResults }, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public async Task<JsonResult> GetCollectionDetails(int Id)
+        {
+            var serverResults = await _loans.GetLoanByKey(Id);
+            if(serverResults != null)
+            {
+                var customerDataObject = await _customer.GetCustomerDetailsByKey(serverResults.LoanCustomerKey);
+                var collection = GetCollectionDetailsInternal(serverResults, customerDataObject);
+                return Json(new { data = collection }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = serverResults }, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region Private Routines 
+
+        public CollectionDetails GetCollectionDetailsInternal(LoanDetails loan, CustomerDetails customer)
+        {
+            //var customerDataObject = await _customer.GetCustomerDetailsByKey(loan.LoanCustomerKey);
+            //var customer = customerDataObject;
+            var customerFullname = customer.Name + " " + customer.Surname;
+
+            return new CollectionDetails
+            {
+                LoanKey = loan.LoanKey,
+                LoanDate = loan.LoanDate,
+                LoanAmount = loan.LoanAmount,
+                LoanReturnDate = loan.LoanReturnDate,
+                ReturnAmount = loan.ReturnAmount,
+                CustomerFullNames = customerFullname
+            };
+
+        }  
 
         #endregion
     }

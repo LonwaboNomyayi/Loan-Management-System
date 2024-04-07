@@ -155,6 +155,7 @@
     <Content Include="Scripts\Application Scripts\Customer\CustomerDetails.js" />
     <Content Include="Scripts\Application Scripts\Home\Home.js" />
     <Content Include="Scripts\Application Scripts\Loan\Collections.js" />
+    <Content Include="Scripts\Application Scripts\Loan\LoanCollection.js" />
     <Content Include="Scripts\Application Scripts\Loan\LoanDetails.js" />
     <Content Include="Scripts\Application Scripts\Loan\Loans.js" />
     <Content Include="Scripts\Application Scripts\Loan\Statements.js" />

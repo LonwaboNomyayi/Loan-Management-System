@@ -33,7 +33,7 @@ function loadDataTable() {
                     if (data != "") {
                         var customerId = data;
                        /* return "<a class='btn btn-warning btn-sm' onclick=navigateToCustomerDetails('" + customerId + "')><span class ='ti-pencil-alt'></span> Edit</a>";*/
-                        return "<a class='btn btn-sm' style='background-color:#00246B; color:#fff;float: right;' onclick=navigateToLoanDetails('" + data + "')> <span class='ti-pencil-alt' style='color:#fff'></span> Edit</a > "
+                        return "<a class='btn btn-sm' style='background-color:#00246B; color:#fff;float: right;' onclick=navigateToCustomerDetails('" + data + "')> <span class='ti-pencil-alt' style='color:#fff'></span> Edit</a > "
                     }
                 }
             }
