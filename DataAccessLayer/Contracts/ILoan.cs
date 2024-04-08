@@ -20,5 +20,6 @@ namespace DataAccessLayer.Contracts
         Task<LoanTotalDTO> GetLoanTotalsForCurrentMonthAsync(int Branch);
         Task<List<LoanLineGraphDTO>> GetLineGraphInfo();
         Task<List<LoanDTO>> GetAllCollectionsForStore(int StoreKey, int month);
+        Task<bool> IsLoanDefault(int loanId);
     }
 }

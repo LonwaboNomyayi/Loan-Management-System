@@ -5,10 +5,13 @@ using System.Web;
 
 namespace Loan_Management_System.Helpers
 {
-    public class SystemConstants
+    public static class SystemConstants
     {
-        public int LoanStatus_Active { get; set; } = 1;
-        public int LoanStatus_Paid { get; set; } = 2;
-        public int LoanStatus_Default { get; set; } = 3;
+        public static int LoanStatus_Active { get; set; } = 1;
+        public static int LoanStatus_Paid { get; set; } = 2;
+        public static int LoanStatus_Default { get; set; } = 3;
+        
+        public static int Base_Loan_Type { get; set; } = 1;
+        public static int Collection_Loan_Type { get; set; } = 2;
     }
 }

@@ -32,9 +32,10 @@ namespace Loan_Management_System.Controllers
 
         }
 
-        public ActionResult Statements(int Id)
+        public async Task<ActionResult> Statements(int Id)
         {
             ViewBag.LoanId = Id;
+            ViewBag.IsCollection =  await _loans.IsLoanDefault(Id);
             return View();
         }
 
@@ -167,6 +168,7 @@ namespace Loan_Management_System.Controllers
             };
 
         }  
+
 
         #endregion
     }

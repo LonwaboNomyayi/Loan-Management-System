@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
-    public class Loan : ILoan
-    {
-         
-        public async Task<List<LoanDTO>> GetAllLoansForStore(int StoreKey)
-        {
+	public class Loan : ILoan
+	{
+
+		public async Task<List<LoanDTO>> GetAllLoansForStore(int StoreKey)
+		{
 			try
 			{
 				SqlParameter[] parameters = new SqlParameter[] { new SqlParameter("@StoreKey", StoreKey) };
@@ -48,14 +48,14 @@ namespace DataAccessLayer.Repository
 
 
 		public async Task<LoanDetails> GetLoanByKey(int Id)
-        {
-            try
-            {
+		{
+			try
+			{
 				SqlParameter[] parameters = new SqlParameter[] { new SqlParameter("@LoanId", Id) };
 				DataTable dt = await Task.Run(() => DbContext.GetParamatizedQuery(("SP_GetLoanByKey"), parameters));
-				
+
 				if (dt.Rows.Count > 0)
-                {
+				{
 					return new LoanDetails
 					{
 						LoanKey = (int)dt.Rows[0]["Loan_Key"],
@@ -71,48 +71,48 @@ namespace DataAccessLayer.Repository
 
 				}
 
-            }
-			catch(Exception ex)
-            {
+			}
+			catch (Exception ex)
+			{
 				//Log ex
-            }
+			}
 			return null;
-        }
+		}
 
 		public async Task<List<LoanStatus>> GetLoanStatuses()
-        {
-            try
-            {
+		{
+			try
+			{
 				DataTable dt = await Task.Run(() => DbContext.GetSelectQuery("SP_GetLoanStatuses"));
 
 				var loanStatuses = new List<LoanStatus>();
 
-                foreach (DataRow row in dt.Rows)
-                {
+				foreach (DataRow row in dt.Rows)
+				{
 					var loanStatus = new LoanStatus
 					{
 						LoanStatusId = (int)row["loan_Status_Key"],
 						LoanStatusDesc = row["loan_Status_Desc"].ToString().Trim()
 					};
 					loanStatuses.Add(loanStatus);
-                }
+				}
 				return loanStatuses;
 
 			}
-			catch(Exception ex)
-            {
+			catch (Exception ex)
+			{
 
-            }
+			}
 			return null;
-        }
+		}
 
 
 		public async Task<bool> RegisterLoan(LoanDetails loanDetais)
-        {
-            try
-            {
+		{
+			try
+			{
 				SqlParameter[] parameters = new SqlParameter[] {
-					new SqlParameter("@LoanDate", loanDetais.LoanDate), 
+					new SqlParameter("@LoanDate", loanDetais.LoanDate),
 					new SqlParameter("@LoanStatus", loanDetais.LoanStatus),
 					new SqlParameter("@LoanCustomerKey", loanDetais.LoanCustomerKey),
 					new SqlParameter("@LoanAmount", loanDetais.LoanAmount),
@@ -123,17 +123,17 @@ namespace DataAccessLayer.Repository
 				};
 				return await Task.Run(() => DbContext.ExecuteNonQuery("SP_AddLoan", parameters));
 			}
-			catch(Exception ex)
-            {
+			catch (Exception ex)
+			{
 
-            }
+			}
 			return false;
-        }
+		}
 
 		public async Task<bool> UpdateLoanPayment(LoanDetailsDTO loanDetails)
-        {
-            try
-            {
+		{
+			try
+			{
 				SqlParameter[] parameters = new SqlParameter[] {
 					new SqlParameter("@LoanId", loanDetails.LoanId),
 					new SqlParameter("@FullPayment", loanDetails.FullPayment),
@@ -145,38 +145,40 @@ namespace DataAccessLayer.Repository
 				};
 				return await Task.Run(() => DbContext.ExecuteNonQuery("SP_UpdateLoanPayment", parameters));
 			}
-			catch(Exception ex)
-            {
-				
-            }
-			return false;
-        }
+			catch (Exception ex)
+			{
 
-        public async Task<bool> DefaultLoan(LoanDetailsDTO loanDetails)
+			}
+			return false;
+		}
+
+		public async Task<bool> DefaultLoan(LoanDetailsDTO loanDetails)
 		{
-            try
-            {
+			try
+			{
 				SqlParameter[] parameters = new SqlParameter[] {
 					new SqlParameter("@LoanId", loanDetails.LoanId),
 					new SqlParameter("@LoanStatus", loanDetails.LoanStatus)
 				};
 				return await Task.Run(() => DbContext.ExecuteNonQuery("SP_DefaultLoan", parameters));
 			}
-            catch (Exception ex)
-            {
+			catch (Exception ex)
+			{
 
-            }
+			}
 			return false;
-        }
+		}
 
 		public async Task<List<StatementDTO>> GetLoanStatements(int LoanId)
-        {
-            try
-            {
+		{
+			try
+			{
 				SqlParameter[] parameters = new SqlParameter[] { new SqlParameter("@LoanId", LoanId) };
 				DataTable dt = await Task.Run(() => DbContext.GetParamatizedQuery(("SP_GetLoanStatements"), parameters));
 
 				var loanStatement = new List<StatementDTO>();
+
+				
 
 				foreach (DataRow row in dt.Rows)
 				{
@@ -189,20 +191,22 @@ namespace DataAccessLayer.Repository
 					};
 					loanStatement.Add(transaction);
 				}
+
+
 				return loanStatement;
 
 			}
-			catch(Exception ex)
-            {
+			catch (Exception ex)
+			{
 
-            }
+			}
 			return null;
-        }
+		}
 
 		public async Task<LoanTotalDTO> GetLoanTotalsForCurrentMonthAsync(int branchId)
-        {
-            try
-            {
+		{
+			try
+			{
 				SqlParameter[] parameters = new SqlParameter[] { new SqlParameter("@BranchId", branchId) };
 				DataTable dt = await Task.Run(() => DbContext.GetParamatizedQuery(("SP_Get_DashboardData"), parameters));
 
@@ -210,51 +214,51 @@ namespace DataAccessLayer.Repository
 				{
 					return new LoanTotalDTO
 					{
-						TotalLoanedAmount = double.Parse(dt.Rows[0]["TotalAmountLoaned"].ToString().Trim()),  
+						TotalLoanedAmount = double.Parse(dt.Rows[0]["TotalAmountLoaned"].ToString().Trim()),
 						TotalReturnAmount = double.Parse(dt.Rows[0]["TotalReturnAmount"].ToString().Trim()),
 						TotalInterest = double.Parse(dt.Rows[0]["TotalInterestAmount"].ToString().Trim())
 					};
 
 				}
 			}
-			catch(Exception ex)
-            {
+			catch (Exception ex)
+			{
 
-            }
+			}
 			return null;
-        }
+		}
 
 		public async Task<List<LoanLineGraphDTO>> GetLineGraphInfo()
-        {
-            try
-            {
+		{
+			try
+			{
 				DataTable dt = await Task.Run(() => DbContext.GetSelectQuery("Get_LineGraphSummaryData"));
 				var totalsummaries = new List<LoanLineGraphDTO>();
 				foreach (DataRow row in dt.Rows)
 				{
 					totalsummaries.Add(new LoanLineGraphDTO
-												{
-													MonthIndex = int.Parse(row["MonthIndex"].ToString().Trim()),
-													CreditFacilitiesPerMonth = double.Parse(row["CreditFacilitiesPerMonth"].ToString().Trim()),
-													ReturnedLoanTotalPerMonth = double.Parse(row["ReturnedLoanTotalPerMonth"].ToString().Trim()),
-													LoanReceivedInterestPerMonth = double.Parse(row["LoanInterestPerMonth"].ToString().Trim()),
-													TotalLossRatio = double.Parse(row["TotalLossRatio"].ToString().Trim())
-												});
+					{
+						MonthIndex = int.Parse(row["MonthIndex"].ToString().Trim()),
+						CreditFacilitiesPerMonth = double.Parse(row["CreditFacilitiesPerMonth"].ToString().Trim()),
+						ReturnedLoanTotalPerMonth = double.Parse(row["ReturnedLoanTotalPerMonth"].ToString().Trim()),
+						LoanReceivedInterestPerMonth = double.Parse(row["LoanInterestPerMonth"].ToString().Trim()),
+						TotalLossRatio = double.Parse(row["TotalLossRatio"].ToString().Trim())
+					});
 
 				}
 				return totalsummaries;
 			}
-			catch(Exception ex)
-            {
+			catch (Exception ex)
+			{
 
-            }
+			}
 			return null;
-        }
+		}
 
 		public async Task<List<LoanDTO>> GetAllCollectionsForStore(int StoreKey, int month)
-        {
-            try
-            {
+		{
+			try
+			{
 				SqlParameter[] parameters = new SqlParameter[] { new SqlParameter("@StoreKey", StoreKey), new SqlParameter("@month", month) };
 				DataTable dt = await Task.Run(() => DbContext.GetParamatizedQuery("SP_GetCollectionsForStore", parameters));
 
@@ -276,11 +280,31 @@ namespace DataAccessLayer.Repository
 				}
 				return collections;
 			}
+			catch (Exception ex)
+			{
+
+			}
+			return null;
+		}
+
+
+
+		public async Task<bool> IsLoanDefault(int loanId)
+        {
+            try
+            {
+				SqlParameter[] parameters = new SqlParameter[] { new SqlParameter("@LoanId", loanId) };
+				DataTable dt = await Task.Run(() => DbContext.GetParamatizedQuery(("SP_IsLoanCollection"), parameters));
+
+				return bool.Parse(dt.Rows[0]["Loan_Default"].ToString());
+
+
+			}
 			catch(Exception ex)
             {
 
             }
-			return null;
+			return false;
         }
 	}
 }

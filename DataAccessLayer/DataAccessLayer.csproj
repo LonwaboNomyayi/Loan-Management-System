@@ -58,6 +58,7 @@
     <Compile Include="DTO\LoanLineGraphDTO.cs" />
     <Compile Include="DTO\LoanTotalDTO.cs" />
     <Compile Include="DTO\StatementDTO.cs" />
+    <Compile Include="DTO\StatementEnvelop.cs" />
     <Compile Include="DTO\UserDetails.cs" />
     <Compile Include="Contracts\IAccounts.cs" />
     <Compile Include="Models\CustomerDetails.cs" />

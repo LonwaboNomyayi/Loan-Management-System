@@ -15,3 +15,7 @@
 
     });
 });
+
+function GetStatement() {
+    window.location.href = "/Loan/Statements/" + $('#txtLoanCollectionId').val();
+}

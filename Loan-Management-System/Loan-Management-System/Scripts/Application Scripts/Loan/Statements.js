@@ -33,5 +33,10 @@
 });
 
 function GetLoanDetails() {
-    window.location.href = '/Loan/LoanDetails/' + $('#LoanId').val();
+    if ($('#IsCollection').val() == "false") {
+        window.location.href = '/Loan/LoanDetails/' + $('#LoanId').val();
+    }
+    else {
+        window.location.href = "/Loan/LoanCollection/" + $('#LoanId').val();
+    }
 }

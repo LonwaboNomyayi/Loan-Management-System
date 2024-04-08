@@ -4,7 +4,7 @@
 }
 
 <div class="main-content">
-    @Html.Partial("~/Views/Shared/_LoanNavBar.cshtml")
+    @Html.Partial("~/Views/Shared/_CollectionNavBar.cshtml")
 
     <input id="txtLoanCollectionId" value="@ViewBag.Id" type="hidden"/>
     <main>
@@ -14,10 +14,10 @@
         <div>
             <div class="col-lg-12 form-fields">
                 <div class="col-lg-4">
-                    <label>Collection Date</label>
+                    <label>Loan Date</label>
                 </div>
                 <div class="col-lg-4">
-                    <input id="txtCollectionDate" class="form-control" type="date" />
+                    <input id="txtCollectionDate" class="form-control" type="date" readonly/>
                 </div>
             </div>
             <div class="col-lg-12 form-fields ">
@@ -25,7 +25,7 @@
                     <label>Loan Holder</label>
                 </div>
                 <div class="col-lg-4">
-                    <input id="txtCustomer" name="txtCustomer" class="form-control"/>
+                    <input id="txtCustomer" name="txtCustomer" class="form-control" readonly/>
                 </div>
             </div>
             <div class="col-lg-12 form-fields ">
@@ -33,7 +33,7 @@
                     <label>Collection Amount</label>
                 </div>
                 <div class="col-lg-4">
-                    <input id="txtCollectionAmount" class="form-control" />
+                    <input id="txtCollectionAmount" class="form-control" readonly/>
                 </div>
             </div>
             <div class="col-lg-12 form-fields ">
@@ -49,12 +49,12 @@
                     <label>Settlement Amount</label>
                 </div>
                 <div class="col-lg-4">
-                    <input id="txtSettlementAmount" class="form-control" />
+                    <input id="txtSettlementAmount" class="form-control" readonly/>
                 </div>
             </div>
-            <div id="PaidContainer" class="col-lg-12 form-fields" hidden>
+            <div class="col-lg-12 form-fields" >
                 <div class="col-lg-4">
-                    <label>Paid Amount</label>
+                    <label>Payment Amount</label>
                 </div>
                 <div class="col-lg-4">
                     <input id="txtPaidAmount" class="form-control" />
