@@ -149,6 +149,12 @@ namespace Loan_Management_System.Controllers
             return Json(new { data = serverResults }, JsonRequestBehavior.AllowGet);
         }
 
+        public async Task<JsonResult> RegisterPaymentForDefaultLoan(LoanDetailsDTO collection)
+        {
+            var serverResult = await _loans.RegisterPaymentForDefaultLoan(collection);
+            return Json(new { data = serverResult }, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region Private Routines 

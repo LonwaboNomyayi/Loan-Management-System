@@ -287,8 +287,6 @@ namespace DataAccessLayer.Repository
 			return null;
 		}
 
-
-
 		public async Task<bool> IsLoanDefault(int loanId)
         {
             try
@@ -299,6 +297,25 @@ namespace DataAccessLayer.Repository
 				return bool.Parse(dt.Rows[0]["Loan_Default"].ToString());
 
 
+			}
+			catch(Exception ex)
+            {
+
+            }
+			return false;
+        }
+
+		public async Task<bool> RegisterPaymentForDefaultLoan(LoanDetailsDTO collection)
+        {
+            try
+            {
+				SqlParameter[] parameters = new SqlParameter[] {
+					new SqlParameter("@LoanId", collection.LoanId),
+					new SqlParameter("@PaidAmount", collection.PaidAmount),
+					new SqlParameter("@LoanReturnDate", collection.ReturnDate),
+					new SqlParameter("@FullPayment", collection.FullPayment)
+				};
+				return await Task.Run(() => DbContext.ExecuteNonQuery("SP_RegisterPaymentForDefaultLoan", parameters));
 			}
 			catch(Exception ex)
             {

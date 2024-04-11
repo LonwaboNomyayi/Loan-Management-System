@@ -21,5 +21,6 @@ namespace DataAccessLayer.Contracts
         Task<List<LoanLineGraphDTO>> GetLineGraphInfo();
         Task<List<LoanDTO>> GetAllCollectionsForStore(int StoreKey, int month);
         Task<bool> IsLoanDefault(int loanId);
+        Task<bool> RegisterPaymentForDefaultLoan(LoanDetailsDTO collection);
     }
 }

@@ -72,7 +72,7 @@ function LoadLoans() {
             }
 
             //Loan not returned on its date 
-            if (returnDate < today) {
+            if (returnDate < today && days > -10) {
                 $('td', nRow).eq(5).css('background-color', 'Red');
                 $('td', nRow).eq(5).css('color', 'White');
             }
@@ -83,7 +83,7 @@ function LoadLoans() {
                 $('td', nRow).css('background-color', '#8AB6F9');
                 $('td', nRow).css('color', 'White');
             }
-            else if (days <= -30) {
+            else if (days <= -10) {
                 $('td', nRow).css('background-color', '#CAD4DF');
             }
 
