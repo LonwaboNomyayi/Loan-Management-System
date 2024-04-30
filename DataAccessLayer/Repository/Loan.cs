@@ -160,7 +160,11 @@ namespace DataAccessLayer.Repository
 					new SqlParameter("@LoanId", loanDetails.LoanId),
 					new SqlParameter("@LoanStatus", loanDetails.LoanStatus)
 				};
-				return await Task.Run(() => DbContext.ExecuteNonQuery("SP_DefaultLoan", parameters));
+				if(await Task.Run(() => DbContext.ExecuteNonQuery("SP_DefaultLoan", parameters)))
+				{
+					return await ApplyLoanInterest(loanDetails.LoanId);
+
+                }
 			}
 			catch (Exception ex)
 			{
@@ -322,6 +326,23 @@ namespace DataAccessLayer.Repository
 
             }
 			return false;
+        }
+
+
+		private async Task<bool> ApplyLoanInterest(int loanId)
+		{
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@LoanId", loanId)
+                };
+                return await Task.Run(() => DbContext.ExecuteNonQuery("SP_ApplyInterestOnLoan", parameters));
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return false;
         }
 	}
 }
